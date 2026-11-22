@@ -25,7 +25,7 @@ Then open http://localhost:8000.
 
 1. Merge into `main`.
 2. Repo **Settings → Pages → Build and deployment → Deploy from a branch → `main` / `(root)`**.
-3. **Custom domain:** enter `markockiadam.com` (the `CNAME` file is already here) and tick **Enforce HTTPS** once it's available.
+3. **Custom domain:** enter `markockiadam.com` (do this once the card.co subscription ends; GitHub adds a `CNAME` file) and tick **Enforce HTTPS** once it's available.
 
 ### DNS (at the place you bought the domain)
 
