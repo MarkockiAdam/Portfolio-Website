@@ -97,7 +97,6 @@
     }).join('');
     $('#gh-link').href = 'https://github.com/' + S.github;
     if (S.photo) $('#avatar').innerHTML = '<img src="' + esc(S.photo) + '" alt="' + esc(S.name) + '" width="240" height="240" loading="lazy">';
-    if (S.face) $('#face').src = S.face; else $('#face').remove();
     if (!S.email) $('#email-btn').hidden = true;
   }
 

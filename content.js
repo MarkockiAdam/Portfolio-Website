@@ -11,7 +11,6 @@ window.SITE = {
   github: "MarkockiAdam",               // used for the contributions heatmap
   email: "markockidev@icloud.com",
   photo: "assets/adam.jpg",             // big photo in About
-  face: "assets/adam-face.jpg",         // small photo in the hero
 
   socials: [
     { label: "X / Twitter", url: "https://x.com/MarkockiAdam" },

@@ -123,7 +123,6 @@ h2 { font-size: clamp(34px, 5vw, 56px); }
   display: flex; flex-direction: column; justify-content: center;
 }
 .hello { display: flex; align-items: center; gap: 16px; margin-bottom: 26px; }
-.face { --n: 4px; width: 64px; height: 64px; object-fit: cover; flex: none; background: var(--panel); }
 .eyebrow { color: var(--ink); }
 .hero-title { font-size: clamp(48px, 9.4vw, 128px); line-height: .96; letter-spacing: -.045em; max-width: 12ch; text-wrap: balance; }
 .lede { font-size: clamp(18px, 2vw, 21px); color: rgba(255, 255, 255, .92); max-width: 36em; margin-top: 28px; line-height: 1.55; }
@@ -282,7 +281,6 @@ h2 { font-size: clamp(34px, 5vw, 56px); }
   .hero { padding-top: 110px; padding-bottom: 110px; }
   .about { grid-template-columns: 1fr; }
   .avatar { width: 100%; height: auto; aspect-ratio: 1; max-width: 320px; }
-  .face { width: 52px; height: 52px; }
   .avatar > span { width: 48px; height: 48px; }
   .hotbar a { width: 44px; height: 44px; }
   .hotbar kbd { display: none; }
