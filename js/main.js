@@ -104,12 +104,11 @@
     $('#cv').innerHTML =
       card('cv.experience', rows(cv.experience), true) +
       card('cv.activities', '<ul class="cv-rows stacked">' + cv.activities.map(function (r) {
-        return '<li><strong>' + esc(r.name) + '</strong><span>' + esc(L(r.role)) + '</span></li>';
+        return '<li><strong>' + esc(L(r.name)) + '</strong><span>' + esc(L(r.role)) + '</span></li>';
       }).join('') + '</ul>') +
       card('cv.languages', '<ul class="cv-rows">' + cv.languages.map(function (l) {
         return '<li><strong>' + esc(L(l.name)) + '</strong><span class="years">' + esc(L(l.level)) + '</span></li>';
       }).join('') + '</ul>') +
-      card('cv.skills', '<ul class="chips">' + cv.skills.map(function (s) { return '<li class="chip notch">' + esc(s) + '</li>'; }).join('') + '</ul>') +
       card('cv.certificates', '<ul class="cv-list">' + cv.certificates.map(function (c) { return '<li>' + esc(c) + '</li>'; }).join('') + '</ul>', true);
   }
 

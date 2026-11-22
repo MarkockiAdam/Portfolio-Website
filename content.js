@@ -145,11 +145,11 @@ window.SITE = {
       { title: { en: "Painter", pl: "Malarz", fr: "Peintre" }, place: "Summer job", years: "Jul — Aug 2021" }
     ],
     activities: [
+      { name: { en: "Student Parliament, Krakow University of Economics", pl: "Parlament Studentów UEK", fr: "Parlement étudiant, Université d’économie de Cracovie" }, role: { en: "Member", pl: "Członek", fr: "Membre" } },
       { name: "UEK Honors WISE", role: { en: "Member", pl: "Członek", fr: "Membre" } },
       { name: "Geopolitics & Economic Geography Student Society", role: { en: "Member", pl: "Członek", fr: "Membre" } },
       { name: "Edu for Edu", role: { en: "Finalist · Zwolnieni z Teorii", pl: "Finalista · Zwolnieni z Teorii", fr: "Finaliste · Zwolnieni z Teorii" } }
     ],
-    skills: ["Swift / SwiftUI", "Python (basics)", "Prompt engineering", "Figma UI/UX", "Canva", "DaVinci Resolve", "MS Office"],
     certificates: [
       "Google Project Management — Coursera",
       "Google AI Essentials — Coursera",
@@ -203,7 +203,7 @@ window.SITE = {
       "contact.text": "Projects, collaborations, or a good conversation about tech and power — my inbox is open.",
       "contact.email": "Email me",
       "contact.copied": "Email copied",
-      "footer.made": "Built by hand in Kraków.",
+      "footer.made": "Built in Kraków, Poland.",
       "nav.home": "Home", "nav.work": "Work", "nav.code": "Code",
       "nav.about": "About", "nav.journey": "CV", "nav.contact": "Contact",
       "ui.sound": "Sound", "ui.theme": "Day / night", "ui.lang": "Language",
@@ -244,7 +244,7 @@ window.SITE = {
       "contact.text": "Projekty, współpraca albo dobra rozmowa o technologii i władzy — śmiało pisz.",
       "contact.email": "Napisz maila",
       "contact.copied": "Skopiowano adres",
-      "footer.made": "Zrobione ręcznie w Krakowie.",
+      "footer.made": "Zbudowane w Krakowie.",
       "nav.home": "Start", "nav.work": "Projekty", "nav.code": "Kod",
       "nav.about": "O mnie", "nav.journey": "CV", "nav.contact": "Kontakt",
       "ui.sound": "Dźwięk", "ui.theme": "Dzień / noc", "ui.lang": "Język",
@@ -285,7 +285,7 @@ window.SITE = {
       "contact.text": "Projets, collaborations ou une bonne discussion sur la tech et le pouvoir — écrivez-moi.",
       "contact.email": "M’écrire",
       "contact.copied": "Adresse copiée",
-      "footer.made": "Fait main à Cracovie.",
+      "footer.made": "Conçu à Cracovie, Pologne.",
       "nav.home": "Accueil", "nav.work": "Projets", "nav.code": "Code",
       "nav.about": "À propos", "nav.journey": "CV", "nav.contact": "Contact",
       "ui.sound": "Son", "ui.theme": "Jour / nuit", "ui.lang": "Langue",
