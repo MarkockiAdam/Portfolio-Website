@@ -61,6 +61,16 @@ window.SITE = {
       ]
     },
     {
+      name: "TimeBox",
+      image: "assets/projects/timebox.png",
+      desc: {
+        en: "A minimalist time-blocking planner. Three top priorities a day, so you work on what actually matters.",
+        pl: "Minimalistyczny planer do blokowania czasu. Trzy główne priorytety dziennie, żeby robić to, co naprawdę ważne.",
+        fr: "Un planificateur minimaliste par blocs de temps. Trois priorités par jour, pour se concentrer sur l’essentiel."
+      },
+      links: [{ label: "App Store", url: "https://apps.apple.com/app/id6756616721" }]
+    },
+    {
       name: "Warashi",
       image: "assets/projects/warashi.png",
       desc: {
@@ -87,14 +97,13 @@ window.SITE = {
       }
     },
     {
-      icon: "trophy", gold: true, when: { en: "2026", pl: "2026", fr: "2026" },
-      title: { en: "Apple Swift Student Challenge — Winner", pl: "Apple Swift Student Challenge — zwycięzca", fr: "Apple Swift Student Challenge — lauréat" },
+      icon: "trophy", gold: true, when: { en: "2026 · Apple", pl: "2026 · Apple", fr: "2026 · Apple" },
+      title: { en: "Swift Student Challenge Winner", pl: "Zwycięzca Swift Student Challenge", fr: "Lauréat du Swift Student Challenge" },
       text: {
         en: "My iOS app SafePoland, a guide to preparing for emergency situations, was selected by Apple as a winning submission.",
         pl: "Moja aplikacja SafePoland, przewodnik przygotowania na sytuacje kryzysowe, została wybrana przez Apple jako zwycięskie zgłoszenie.",
         fr: "Mon app iOS SafePoland, un guide pour se préparer aux situations d’urgence, a été choisie par Apple parmi les projets lauréats."
-      },
-      image: "assets/ssc-certificate.png"
+      }
     },
     {
       icon: "flag", when: { en: "2026 — now", pl: "2026 — obecnie", fr: "2026 — aujourd’hui" },
@@ -129,15 +138,16 @@ window.SITE = {
   /* The rest of the CV. Places stay as written; titles are translated. */
   cv: {
     experience: [
+      { title: { en: "Co-founder & President", pl: "Współzałożyciel i prezes", fr: "Cofondateur et président" }, place: "Terra Cracovianum", years: "2026 — now" },
       { title: { en: "Volunteer", pl: "Wolontariusz", fr: "Bénévole" }, place: "Padre Pio Charitable Organization, Kraków", years: "2015 — now" },
       { title: { en: "Restaurant team member", pl: "Członek zespołu restauracji", fr: "Équipier de restaurant" }, place: "McDonald’s, Kraków", years: "Jun — Sep 2024" },
       { title: { en: "Treasurer", pl: "Skarbnik", fr: "Trésorier" }, place: "Student company", years: "2022 — 2023" },
       { title: { en: "Painter", pl: "Malarz", fr: "Peintre" }, place: "Summer job", years: "Jul — Aug 2021" }
     ],
     activities: [
-      { title: { en: "Member", pl: "Członek", fr: "Membre" }, place: "UEK Honors WISE" },
-      { title: { en: "Member", pl: "Członek", fr: "Membre" }, place: "Geopolitics & Economic Geography Student Society" },
-      { title: { en: "Finalist", pl: "Finalista", fr: "Finaliste" }, place: "Edu for Edu — Zwolnieni z Teorii" }
+      { name: "UEK Honors WISE", role: { en: "Member", pl: "Członek", fr: "Membre" } },
+      { name: "Geopolitics & Economic Geography Student Society", role: { en: "Member", pl: "Członek", fr: "Membre" } },
+      { name: "Edu for Edu", role: { en: "Finalist · Zwolnieni z Teorii", pl: "Finalista · Zwolnieni z Teorii", fr: "Finaliste · Zwolnieni z Teorii" } }
     ],
     skills: ["Swift / SwiftUI", "Python (basics)", "Prompt engineering", "Figma UI/UX", "Canva", "DaVinci Resolve", "MS Office"],
     certificates: [
@@ -162,7 +172,7 @@ window.SITE = {
   i18n: {
     en: {
       "cv.experience": "Experience", "cv.activities": "Activities", "cv.skills": "Skills",
-      "cv.certificates": "Certificates", "cv.languages": "Languages", "work.winner": "Swift Student Challenge ’26 winner",
+      "cv.certificates": "Certificates", "cv.languages": "Languages", "work.winner": "Swift Student Challenge Winner",
       "meta.title": "Adam Markocki — Builder of apps. Student of power.",
       "hero.eyebrow": "Kraków, Poland 🇵🇱",
       "hero.title": "Builder of apps.<br>Student of power.",
@@ -184,7 +194,6 @@ window.SITE = {
       "about.title": "Between politics and tech",
       "about.p1": "Proudly Polish 🇵🇱. I study international relations, and when I get sick of politics, I go to tech. When I feel too stupid for tech, I go back to politics.",
       "about.p2": "I’m fascinated by power: who wins it, how they keep it, and what they build with it. That’s why I co-founded Terra Cracovianum, and why I ship my own apps.",
-      "about.p3": "I love reading about people who built big things. David Senra’s Founders podcast turned it into a habit.",
       "about.heroes": "People I learn from",
       "journey.kicker": "04 / CV",
       "journey.title": "Experience & education",
@@ -204,7 +213,7 @@ window.SITE = {
     },
     pl: {
       "cv.experience": "Doświadczenie", "cv.activities": "Aktywności", "cv.skills": "Umiejętności",
-      "cv.certificates": "Certyfikaty", "cv.languages": "Języki", "work.winner": "Zwycięzca Swift Student Challenge ’26",
+      "cv.certificates": "Certyfikaty", "cv.languages": "Języki", "work.winner": "Zwycięzca Swift Student Challenge",
       "meta.title": "Adam Markocki — Buduję aplikacje. Badam władzę.",
       "hero.eyebrow": "Kraków, Polska 🇵🇱",
       "hero.title": "Buduję aplikacje.<br>Badam władzę.",
@@ -226,7 +235,6 @@ window.SITE = {
       "about.title": "Między polityką a technologią",
       "about.p1": "Dumny Polak 🇵🇱. Studiuję stosunki międzynarodowe, a kiedy mam dość polityki, idę w technologię. Kiedy czuję się za głupi na technologię, wracam do polityki.",
       "about.p2": "Fascynuje mnie władza: kto ją zdobywa, jak ją utrzymuje i co z nią buduje. Dlatego współzałożyłem Terra Cracovianum i dlatego wydaję własne aplikacje.",
-      "about.p3": "Uwielbiam czytać o ludziach, którzy zbudowali wielkie rzeczy. Podcast Founders Davida Senry zrobił z tego nawyk.",
       "about.heroes": "Od kogo się uczę",
       "journey.kicker": "04 / CV",
       "journey.title": "Doświadczenie i edukacja",
@@ -246,7 +254,7 @@ window.SITE = {
     },
     fr: {
       "cv.experience": "Expérience", "cv.activities": "Activités", "cv.skills": "Compétences",
-      "cv.certificates": "Certificats", "cv.languages": "Langues", "work.winner": "Lauréat Swift Student Challenge ’26",
+      "cv.certificates": "Certificats", "cv.languages": "Langues", "work.winner": "Lauréat Swift Student Challenge",
       "meta.title": "Adam Markocki — Je crée des apps. J’étudie le pouvoir.",
       "hero.eyebrow": "Cracovie, Pologne 🇵🇱",
       "hero.title": "Je crée des apps.<br>J’étudie le pouvoir.",
@@ -268,7 +276,6 @@ window.SITE = {
       "about.title": "Entre politique et tech",
       "about.p1": "Fièrement polonais 🇵🇱. J’étudie les relations internationales, et quand j’en ai assez de la politique, je passe à la tech. Quand je me sens trop bête pour la tech, je reviens à la politique.",
       "about.p2": "Le pouvoir me fascine : qui le conquiert, comment on le garde, et ce qu’on en fait. C’est pour ça que j’ai cofondé Terra Cracovianum, et que je publie mes propres apps.",
-      "about.p3": "J’adore lire sur ceux qui ont bâti de grandes choses. Le podcast Founders de David Senra en a fait une habitude.",
       "about.heroes": "Ceux qui m’inspirent",
       "journey.kicker": "04 / CV",
       "journey.title": "Expérience et formation",

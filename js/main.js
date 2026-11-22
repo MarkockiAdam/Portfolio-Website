@@ -69,8 +69,9 @@
         return '<a class="link-arrow" href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.label) + ' ↗</a>';
       }).join('');
       return '<article class="project panel notch reveal" style="--i:' + i + '">' +
-        '<div class="project-top">' + (p.image ? '<img class="app-icon" src="' + esc(p.image) + '" alt="" width="64" height="64" loading="lazy">' : '<span class="tile notch">' + PixelIcon(p.icon) + '</span>') + (p.badge ? '<span class="win notch">' + PixelIcon('trophy') + '<span>' + esc(T('work.winner')) + '</span></span>' : '') + '</div>' +
-        '<h3>' + esc(p.name) + '</h3><p>' + esc(p.desc[lang] || p.desc.en) + '</p>' +
+        '<div class="project-top">' + (p.image ? '<img class="app-icon" src="' + esc(p.image) + '" alt="" width="64" height="64" loading="lazy">' : '<span class="tile notch">' + PixelIcon(p.icon) + '</span>') + '</div>' +
+        '<h3>' + esc(p.name) + '</h3>' +
+        (p.badge ? '<span class="win notch">' + PixelIcon('trophy') + '<span>' + esc(T('work.winner')) + '</span></span>' : '') + '<p>' + esc(p.desc[lang] || p.desc.en) + '</p>' +
         '<div class="project-links">' + links + '</div></article>';
     }).join('');
   }
@@ -102,7 +103,9 @@
     };
     $('#cv').innerHTML =
       card('cv.experience', rows(cv.experience), true) +
-      card('cv.activities', rows(cv.activities)) +
+      card('cv.activities', '<ul class="cv-rows stacked">' + cv.activities.map(function (r) {
+        return '<li><strong>' + esc(r.name) + '</strong><span>' + esc(L(r.role)) + '</span></li>';
+      }).join('') + '</ul>') +
       card('cv.languages', '<ul class="cv-rows">' + cv.languages.map(function (l) {
         return '<li><strong>' + esc(L(l.name)) + '</strong><span class="years">' + esc(L(l.level)) + '</span></li>';
       }).join('') + '</ul>') +

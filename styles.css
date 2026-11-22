@@ -156,7 +156,7 @@ h2 { font-size: clamp(34px, 5vw, 56px); }
 .tile { --n: 4px; width: 56px; height: 56px; padding: 12px; background: rgba(255, 255, 255, .14); flex: none; }
 .project:hover .tile svg { animation: bob .6s steps(3) infinite alternate; }
 @keyframes bob { to { transform: translateY(-3px); } }
-.win { --n: 3px; display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: var(--gold-ink); font-size: 13px; font-weight: 600; padding: 7px 11px; }
+.win { --n: 3px; align-self: flex-start; width: fit-content; white-space: nowrap; display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: var(--gold-ink); font-size: 13px; font-weight: 600; padding: 7px 11px; }
 .win svg { width: 16px; height: 16px; background: #3a2a00; padding: 2px; }
 .quest-img { width: 180px; height: 180px; object-fit: cover; margin-top: 14px; border-radius: 4px; box-shadow: 0 6px 18px rgba(8, 20, 70, .35); }
 .cv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 14px; margin-top: 28px; }
@@ -164,6 +164,7 @@ h2 { font-size: clamp(34px, 5vw, 56px); }
 .cv-card.wide { grid-column: 1 / -1; }
 .cv-card h3 { color: var(--ink-2); margin-bottom: 14px; font-size: 14px; }
 .cv-rows li { display: flex; justify-content: space-between; gap: 6px 16px; flex-wrap: wrap; padding: 10px 0; border-top: 1px solid var(--line); color: var(--ink-2); }
+.cv-rows.stacked li { flex-direction: column; gap: 2px; }
 .cv-rows li:first-child { border-top: 0; padding-top: 0; }
 .cv-rows strong { color: var(--ink); font-weight: 600; }
 .cv-rows .years { color: var(--ink-2); white-space: nowrap; font-variant-numeric: tabular-nums; }
