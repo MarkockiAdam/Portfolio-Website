@@ -11,7 +11,7 @@
   var VS = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
   var FS = [
     'precision highp float;',
-    'uniform vec2 uRes;uniform float uTime,uScroll,uNight;uniform vec2 uPtr;',
+    'uniform vec2 uRes;uniform float uTime,uScroll,uNight;uniform vec2 uPtr;uniform vec4 uDim[8];',
     'float h(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}',
     'float n(vec2 p){vec2 i=floor(p),f=fract(p);vec2 u=f*f*(3.-2.*f);',
     ' return mix(mix(h(i),h(i+vec2(1,0)),u.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),u.x),u.y);}',
@@ -40,6 +40,9 @@
     ' v+=smoothstep(.32,.0,d)*mix(.22,.10,uNight)*set;',
     /* pointer light */
     ' if(uPtr.x>-500.){float pd=length(c-uPtr)/uRes.y; v+=exp(-pd*pd*28.)*(.10+cloud*.28);}',
+    ' float dim=0.;',
+    ' for(int i=0;i<8;i++){vec4 r=uDim[i]; if(r.z<=r.x) continue; vec2 o=max(max(r.xy-c,c-r.zw),0.); dim=max(dim,1.-smoothstep(0.,14.,length(o)));}',
+    ' v=mix(v,min(v,mix(.34,.40,uNight)),dim); disc*=1.-dim;',
     ' float q=clamp(v,0.,1.)*4.; float lo=floor(q); float idx=min(lo+step(bayer(c),q-lo),4.);',
     ' vec3 col=lad(idx,uNight);',
     ' col=mix(col,mix(vec3(1.,.98,.9),vec3(.93,.95,1.),uNight),disc);',
@@ -63,6 +66,24 @@
   var loc = gl.getAttribLocation(pr, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
   var U = {};
   ['uRes', 'uTime', 'uScroll', 'uNight', 'uPtr'].forEach(function (k) { U[k] = gl.getUniformLocation(pr, k); });
+  U.uDim = gl.getUniformLocation(pr, 'uDim');
+  var dimData = new Float32Array(32);
+
+  /* Text marked [data-dim] gets calmer, deeper sky behind it so it stays readable. */
+  function dims() {
+    var els = document.querySelectorAll('[data-dim]'), k = 0, pad = 14;
+    dimData.fill(0);
+    for (var i = 0; i < els.length && k < 8; i++) {
+      var r = els[i].getBoundingClientRect();
+      if (r.bottom < -40 || r.top > innerHeight + 40 || !r.width) continue;
+      dimData[k * 4] = (r.left - pad) / cell;
+      dimData[k * 4 + 1] = H - (r.bottom + pad) / cell;
+      dimData[k * 4 + 2] = (r.right + pad) / cell;
+      dimData[k * 4 + 3] = H - (r.top - pad) / cell;
+      k++;
+    }
+    gl.uniform4fv(U.uDim, dimData);
+  }
 
   var cell = 4, W = 0, H = 0;
   var reduce = matchMedia('(prefers-reduced-motion: reduce)');
@@ -90,6 +111,7 @@
     gl.uniform1f(U.uScroll, scrollY / innerHeight);
     gl.uniform1f(U.uNight, night);
     gl.uniform2f(U.uPtr, ptr.x / cell, H - ptr.y / cell);
+    dims();
     gl.drawArrays(gl.TRIANGLES, 0, 3);
   }
 

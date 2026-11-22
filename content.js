@@ -9,61 +9,67 @@
 window.SITE = {
   name: "Adam Markocki",
   github: "MarkockiAdam",               // used for the contributions heatmap
-  email: "",                            // TODO: public email, e.g. "hello@markockiadam.com"
-  photo: "",                            // TODO: e.g. "assets/adam.jpg" (square photo works best)
+  email: "markockidev@icloud.com",
+  photo: "assets/adam.jpg",             // big photo in About
+  face: "assets/adam-face.jpg",         // small photo in the hero
 
   socials: [
-    { label: "X / Twitter", url: "https://x.com/" },          // TODO: your handle
+    { label: "X / Twitter", url: "https://x.com/MarkockiAdam" },
+    { label: "LinkedIn",    url: "https://www.linkedin.com/in/adam-markocki-98a037218/" },
     { label: "GitHub",      url: "https://github.com/MarkockiAdam" },
-    { label: "LinkedIn",    url: "https://www.linkedin.com/" } // TODO: your profile
+    { label: "Instagram",   url: "https://www.instagram.com/markockiadam/" },
+    { label: "TikTok",      url: "https://www.tiktok.com/@markockidev" }
   ],
 
-  /* Projects. icon: trophy, globe, block, book, heart, chart, star, flag, crown, pick, grid, mail
+  /* Projects. image: app icon in assets/projects/. (Or icon: a pixel icon name instead.)
      links: any number of { label, url }. */
   projects: [
     {
-      name: "ValuationDojo",            // TODO: check name + description
-      icon: "chart",
-      tags: ["iOS", "SwiftUI", "Finance"],
+      name: "Warashi",
+      image: "assets/projects/warashi.png",
+      tags: ["macOS", "Swift"],
       desc: {
-        en: "Learn to value companies like an investor — one practice round at a time.",
-        pl: "Naucz się wyceniać spółki jak inwestor — runda po rundzie.",
-        fr: "Apprendre à valoriser une entreprise comme un investisseur, un exercice à la fois."
+        en: "A flight recorder for your Mac. A quiet menu bar app that remembers what your Mac did, every five seconds, for a year.",
+        pl: "Czarna skrzynka dla Twojego Maca. Cicha aplikacja w pasku menu, która przez rok co pięć sekund zapisuje, co robił Twój Mac.",
+        fr: "Une boîte noire pour votre Mac. Une app discrète dans la barre des menus qui retient ce que fait votre Mac, toutes les cinq secondes, pendant un an."
       },
-      links: [{ label: "App Store", url: "#" }, { label: "GitHub", url: "#" }]
+      links: [{ label: "warashi.app", url: "https://warashi.app/" }]
     },
     {
-      name: "BookWorm",                 // TODO
-      icon: "book",
-      tags: ["iOS", "SwiftUI"],
+      name: "BookWorm",
+      image: "assets/projects/bookworm.png",
+      tags: ["iPhone", "iPad", "SwiftUI"],
       desc: {
-        en: "A reading companion that turns books into a daily habit.",
-        pl: "Towarzysz czytania, który zamienia książki w codzienny nawyk.",
-        fr: "Un compagnon de lecture qui fait des livres une habitude quotidienne."
+        en: "A calm reading tracker for paper books, ebooks and audiobooks. Log a page in a second and keep your streak going.",
+        pl: "Spokojny dziennik czytania dla książek papierowych, e-booków i audiobooków. Zapisz stronę w sekundę i nie przerywaj serii.",
+        fr: "Un suivi de lecture apaisant pour livres papier, e-books et livres audio. Notez une page en une seconde et gardez votre série."
       },
-      links: [{ label: "App Store", url: "#" }]
+      links: [
+        { label: "App Store", url: "https://apps.apple.com/app/id6761390761" },
+        { label: "ilovebookworm.com", url: "https://ilovebookworm.com/" }
+      ]
     },
     {
-      name: "HabitBuddy",               // TODO
-      icon: "heart",
-      tags: ["iOS", "SwiftUI"],
+      name: "Easel",
+      image: "assets/projects/easel.png",
+      tags: ["iPhone", "iPad", "SwiftUI"],
       desc: {
-        en: "Build habits with a friend who keeps you honest.",
-        pl: "Buduj nawyki z kimś, kto pilnuje, żebyś nie odpuszczał.",
-        fr: "Construire ses habitudes avec un ami qui vous garde sur la bonne voie."
+        en: "A focus timer that slowly reveals a famous painting while you work. Stay focused, and the masterpiece is yours.",
+        pl: "Minutnik skupienia, który powoli odsłania słynny obraz, gdy pracujesz. Wytrwaj do końca, a arcydzieło jest Twoje.",
+        fr: "Un minuteur de concentration qui dévoile lentement un tableau célèbre pendant que vous travaillez."
       },
-      links: [{ label: "App Store", url: "#" }]
+      links: [{ label: "App Store", url: "https://apps.apple.com/app/id6793262483" }]
     },
     {
-      name: "Hachi",                    // TODO
-      icon: "star",
-      tags: ["Web"],
+      name: "SafePoland",
+      image: "assets/projects/safepoland.png",
+      tags: ["iPhone", "5 languages"],
       desc: {
-        en: "Description coming soon.",
-        pl: "Opis już wkrótce.",
-        fr: "Description à venir."
+        en: "Emergency numbers and safety checklists for Poland, in five languages. Works offline and collects no data.",
+        pl: "Numery alarmowe i listy kontrolne bezpieczeństwa w Polsce, w pięciu językach. Działa offline i nie zbiera danych.",
+        fr: "Numéros d’urgence et listes de sécurité pour la Pologne, en cinq langues. Fonctionne hors ligne, sans collecte de données."
       },
-      links: [{ label: "Visit", url: "#" }]
+      links: []                         // TODO: add App Store link
     }
   ],
 
@@ -106,13 +112,14 @@ window.SITE = {
       }
     },
     {
-      icon: "flag", when: { en: "Co-founder", pl: "Współzałożyciel", fr: "Cofondateur" },
-      title: { en: "Co-founded a think tank", pl: "Współzałożyłem think tank", fr: "Cofondé un think tank" },
+      icon: "flag", when: { en: "2026", pl: "2026", fr: "2026" },
+      title: { en: "Co-founded Terra Cracovianum", pl: "Współzałożyłem Terra Cracovianum", fr: "Cofondé Terra Cracovianum" },
       text: {
-        en: "Turning ideas about policy and power into research people can use.",   // TODO: think tank name
-        pl: "Zamieniamy pomysły o polityce i władzy w analizy, z których da się korzystać.",
-        fr: "Transformer des idées sur la politique et le pouvoir en recherche utile."
-      }
+        en: "An independent Kraków think tank on geopolitics, diplomacy and armed conflict. Free analysis, no paywall.",
+        pl: "Niezależny krakowski think tank: geopolityka, dyplomacja i konflikty zbrojne. Darmowe analizy, bez paywalla.",
+        fr: "Un think tank indépendant à Cracovie : géopolitique, diplomatie et conflits armés. Analyses gratuites, sans paywall."
+      },
+      link: { label: "terracracovianum.org", url: "https://terracracovianum.org/" }
     },
     {
       icon: "trophy", gold: true, when: { en: "2026", pl: "2026", fr: "2026" },
@@ -140,13 +147,13 @@ window.SITE = {
   i18n: {
     en: {
       "meta.title": "Adam Markocki — Builder of apps. Student of power.",
-      "hero.eyebrow": "Kraków, Poland · Builder",
+      "hero.eyebrow": "Kraków, Poland 🇵🇱",
       "hero.title": "Builder of apps.<br>Student of power.",
       "hero.lede": "I’m Adam. I study international relations and build apps for iPhone and the web. Swift Student Challenge winner 2026.",
       "hero.cta1": "See my work",
       "hero.cta2": "Get in touch",
       "badge.ssc": "Swift Student Challenge Winner ’26",
-      "badge.tank": "Think tank co-founder",
+      "badge.tank": "Co-founder · Terra Cracovianum",
       "badge.wise": "WISE · Kraków Univ. of Economics",
       "work.kicker": "01 / Work",
       "work.title": "Things I’ve built",
@@ -159,7 +166,7 @@ window.SITE = {
       "about.kicker": "03 / About",
       "about.title": "From Minecraft to the world stage",
       "about.p1": "I’ve been building things since I was a kid. First it was worlds in Minecraft. Now it’s apps people use every day.",
-      "about.p2": "I study international relations because I’m fascinated by power: who wins it, how they keep it, and what they build with it.",
+      "about.p2": "I study international relations because I’m fascinated by power: who wins it, how they keep it, and what they build with it. When I get sick of politics, I go to tech. When I feel too stupid for tech, I go back to politics.",
       "about.p3": "I love reading about people who built big things. David Senra’s Founders podcast turned it into a habit.",
       "about.heroes": "People I learn from",
       "journey.kicker": "04 / Journey",
@@ -180,13 +187,13 @@ window.SITE = {
     },
     pl: {
       "meta.title": "Adam Markocki — Buduję aplikacje. Badam władzę.",
-      "hero.eyebrow": "Kraków · Twórca",
+      "hero.eyebrow": "Kraków, Polska 🇵🇱",
       "hero.title": "Buduję aplikacje.<br>Badam władzę.",
       "hero.lede": "Jestem Adam. Studiuję stosunki międzynarodowe i tworzę aplikacje na iPhone’a i na web. Zwycięzca Swift Student Challenge 2026.",
       "hero.cta1": "Zobacz projekty",
       "hero.cta2": "Napisz do mnie",
       "badge.ssc": "Zwycięzca Swift Student Challenge ’26",
-      "badge.tank": "Współzałożyciel think tanku",
+      "badge.tank": "Współzałożyciel · Terra Cracovianum",
       "badge.wise": "WISE · UEK w Krakowie",
       "work.kicker": "01 / Projekty",
       "work.title": "Co zbudowałem",
@@ -199,7 +206,7 @@ window.SITE = {
       "about.kicker": "03 / O mnie",
       "about.title": "Od Minecrafta do sceny światowej",
       "about.p1": "Buduję od dziecka. Najpierw były to światy w Minecrafcie. Teraz to aplikacje, z których ludzie korzystają na co dzień.",
-      "about.p2": "Studiuję stosunki międzynarodowe, bo fascynuje mnie władza: kto ją zdobywa, jak ją utrzymuje i co z nią buduje.",
+      "about.p2": "Studiuję stosunki międzynarodowe, bo fascynuje mnie władza: kto ją zdobywa, jak ją utrzymuje i co z nią buduje. Kiedy mam dość polityki, idę w technologię. Kiedy czuję się za głupi na technologię, wracam do polityki.",
       "about.p3": "Uwielbiam czytać o ludziach, którzy zbudowali wielkie rzeczy. Podcast Founders Davida Senry zrobił z tego nawyk.",
       "about.heroes": "Od kogo się uczę",
       "journey.kicker": "04 / Droga",
@@ -220,13 +227,13 @@ window.SITE = {
     },
     fr: {
       "meta.title": "Adam Markocki — Je crée des apps. J’étudie le pouvoir.",
-      "hero.eyebrow": "Cracovie, Pologne · Créateur",
+      "hero.eyebrow": "Cracovie, Pologne 🇵🇱",
       "hero.title": "Je crée des apps.<br>J’étudie le pouvoir.",
       "hero.lede": "Je suis Adam. J’étudie les relations internationales et je crée des apps pour iPhone et le web. Lauréat du Swift Student Challenge 2026.",
       "hero.cta1": "Voir mes projets",
       "hero.cta2": "Me contacter",
       "badge.ssc": "Lauréat Swift Student Challenge ’26",
-      "badge.tank": "Cofondateur d’un think tank",
+      "badge.tank": "Cofondateur · Terra Cracovianum",
       "badge.wise": "WISE · Univ. d’économie de Cracovie",
       "work.kicker": "01 / Projets",
       "work.title": "Ce que j’ai construit",
@@ -239,7 +246,7 @@ window.SITE = {
       "about.kicker": "03 / À propos",
       "about.title": "De Minecraft à la scène mondiale",
       "about.p1": "Je construis depuis que je suis enfant. D’abord des mondes dans Minecraft. Aujourd’hui, des apps que les gens utilisent chaque jour.",
-      "about.p2": "J’étudie les relations internationales parce que le pouvoir me fascine : qui le conquiert, comment on le garde, et ce qu’on en fait.",
+      "about.p2": "J’étudie les relations internationales parce que le pouvoir me fascine : qui le conquiert, comment on le garde, et ce qu’on en fait. Quand j’en ai assez de la politique, je passe à la tech. Quand je me sens trop bête pour la tech, je reviens à la politique.",
       "about.p3": "J’adore lire sur ceux qui ont bâti de grandes choses. Le podcast Founders de David Senra en a fait une habitude.",
       "about.heroes": "Ceux qui m’inspirent",
       "journey.kicker": "04 / Parcours",

@@ -41,7 +41,6 @@
 
   <header class="topbar">
     <a class="mark" href="#home" aria-label="Adam Markocki, home">
-      <span class="mark-icon" data-icon="block"></span>
       <span class="mark-name">Adam Markocki</span>
     </a>
     <div class="controls">
@@ -61,9 +60,12 @@
 
   <main>
     <section class="hero" id="home" data-section="0">
-      <p class="eyebrow px" data-i18n="hero.eyebrow">Kraków, Poland · Builder</p>
-      <h1 class="hero-title" data-i18n="hero.title">Builder of apps.<br>Student of power.</h1>
-      <p class="lede" data-i18n="hero.lede">I’m Adam. I study international relations and build apps for iPhone and the web. Swift Student Challenge winner 2026.</p>
+      <div class="hello" data-dim>
+        <img class="face notch" id="face" src="assets/adam-face.jpg" alt="Adam Markocki" width="64" height="64">
+        <p class="eyebrow px" data-i18n="hero.eyebrow">Kraków, Poland 🇵🇱</p>
+      </div>
+      <h1 class="hero-title" data-dim data-i18n="hero.title">Builder of apps.<br>Student of power.</h1>
+      <p class="lede" data-dim data-i18n="hero.lede">I’m Adam. I study international relations and build apps for iPhone and the web. Swift Student Challenge winner 2026.</p>
       <div class="cta">
         <a class="btn btn-primary notch" href="#work" data-i18n="hero.cta1">See my work</a>
         <a class="btn btn-ghost notch" href="#contact" data-i18n="hero.cta2">Get in touch</a>
@@ -76,7 +78,7 @@
     </section>
 
     <section class="section" id="work" data-section="1">
-      <header class="section-head reveal">
+      <header class="section-head reveal" data-dim>
         <p class="kicker px" data-i18n="work.kicker">01 / Work</p>
         <h2 data-i18n="work.title">Things I’ve built</h2>
       </header>
@@ -113,7 +115,7 @@
     </section>
 
     <section class="section" id="journey" data-section="4">
-      <header class="section-head reveal">
+      <header class="section-head reveal" data-dim>
         <p class="kicker px" data-i18n="journey.kicker">04 / Journey</p>
         <h2 data-i18n="journey.title">Advancements</h2>
       </header>
@@ -121,18 +123,18 @@
     </section>
 
     <section class="section contact" id="contact" data-section="5">
-      <p class="kicker px reveal" data-i18n="contact.kicker">05 / Contact</p>
-      <h2 class="contact-title reveal" data-i18n="contact.title">Let’s build something.</h2>
-      <p class="lede reveal" data-i18n="contact.text"></p>
+      <p class="kicker px reveal" data-dim data-i18n="contact.kicker">05 / Contact</p>
+      <h2 class="contact-title reveal" data-dim data-i18n="contact.title">Let’s build something.</h2>
+      <p class="lede reveal" data-dim data-i18n="contact.text"></p>
       <div class="cta reveal">
-        <button type="button" class="btn btn-primary notch" id="email-btn"><span data-icon="mail"></span><span data-i18n="contact.email">Email me</span></button>
+        <button type="button" class="btn btn-primary notch" id="email-btn"><span data-i18n="contact.email">Email me</span></button>
       </div>
-      <ul class="socials reveal" id="socials"></ul>
+      <ul class="socials reveal" data-dim id="socials"></ul>
     </section>
   </main>
 
   <footer class="ground">
-    <p class="foot-note"><span>© 2026 Adam Markocki</span> · <span data-i18n="footer.made">Built by hand in Kraków.</span></p>
+    <p class="foot-note" data-dim><span>© 2026 Adam Markocki</span> · <span data-i18n="footer.made">Built by hand in Kraków.</span></p>
     <canvas id="meadow" aria-hidden="true"></canvas>
   </footer>
 

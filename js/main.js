@@ -70,7 +70,7 @@
       }).join('');
       var tags = (p.tags || []).map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('');
       return '<article class="project panel notch reveal" style="--i:' + i + '">' +
-        '<div class="project-top"><span class="tile notch">' + PixelIcon(p.icon) + '</span><ul class="tags">' + tags + '</ul></div>' +
+        '<div class="project-top">' + (p.image ? '<img class="app-icon" src="' + esc(p.image) + '" alt="" width="64" height="64" loading="lazy">' : '<span class="tile notch">' + PixelIcon(p.icon) + '</span>') + '<ul class="tags">' + tags + '</ul></div>' +
         '<h3>' + esc(p.name) + '</h3><p>' + esc(p.desc[lang] || p.desc.en) + '</p>' +
         '<div class="project-links">' + links + '</div></article>';
     }).join('');
@@ -84,7 +84,9 @@
         '<div class="quest-card panel notch">' +
         '<p class="when px">' + esc(q.when[lang] || q.when.en) + '</p>' +
         '<h3>' + esc(q.title[lang] || q.title.en) + '</h3>' +
-        '<p>' + esc(q.text[lang] || q.text.en) + '</p></div></li>';
+        '<p>' + esc(q.text[lang] || q.text.en) + '</p>' +
+        (q.link ? '<a class="link-arrow" href="' + esc(q.link.url) + '" target="_blank" rel="noopener">' + esc(q.link.label) + ' ↗</a>' : '') +
+        '</div></li>';
     }).join('');
   }
 
@@ -94,7 +96,8 @@
       return '<li><a class="link-arrow" href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.label) + ' ↗</a></li>';
     }).join('');
     $('#gh-link').href = 'https://github.com/' + S.github;
-    if (S.photo) $('#avatar').innerHTML = '<img src="' + esc(S.photo) + '" alt="' + esc(S.name) + '" width="160" height="160">';
+    if (S.photo) $('#avatar').innerHTML = '<img src="' + esc(S.photo) + '" alt="' + esc(S.name) + '" width="240" height="240" loading="lazy">';
+    if (S.face) $('#face').src = S.face; else $('#face').remove();
     if (!S.email) $('#email-btn').hidden = true;
   }
 
