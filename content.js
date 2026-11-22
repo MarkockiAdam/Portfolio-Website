@@ -10,7 +10,7 @@ window.SITE = {
   name: "Adam Markocki",
   github: "MarkockiAdam",               // used for the contributions heatmap
   email: "markockidev@icloud.com",
-  photo: "assets/adam.jpg",             // big photo in About
+  photo: "assets/adam-illustrated.jpg", // picture in About
 
   socials: [
     { label: "X / Twitter", url: "https://x.com/MarkockiAdam" },
@@ -20,115 +20,63 @@ window.SITE = {
     { label: "TikTok",      url: "https://www.tiktok.com/@markockidev" }
   ],
 
-  /* Projects. image: app icon in assets/projects/. (Or icon: a pixel icon name instead.)
+  /* Projects. image: app icon in assets/projects/. badge: optional gold label.
      links: any number of { label, url }. */
   projects: [
     {
-      name: "Warashi",
-      image: "assets/projects/warashi.png",
-      tags: ["macOS", "Swift"],
+      name: "SafePoland",
+      image: "assets/projects/safepoland.png",
+      badge: true,                      // shows "Swift Student Challenge winner"
       desc: {
-        en: "A flight recorder for your Mac. A quiet menu bar app that remembers what your Mac did, every five seconds, for a year.",
-        pl: "Czarna skrzynka dla Twojego Maca. Cicha aplikacja w pasku menu, która przez rok co pięć sekund zapisuje, co robił Twój Mac.",
-        fr: "Une boîte noire pour votre Mac. Une app discrète dans la barre des menus qui retient ce que fait votre Mac, toutes les cinq secondes, pendant un an."
+        en: "A guide to preparing for emergencies in Poland: emergency numbers and safety checklists in five languages. Works offline and collects no data.",
+        pl: "Przewodnik, jak przygotować się na sytuacje kryzysowe w Polsce: numery alarmowe i listy kontrolne w pięciu językach. Działa offline i nie zbiera danych.",
+        fr: "Un guide pour se préparer aux situations d’urgence en Pologne : numéros d’urgence et listes de sécurité en cinq langues. Hors ligne, sans collecte de données."
       },
-      links: [{ label: "warashi.app", url: "https://warashi.app/" }]
+      links: [{ label: "App Store", url: "https://apps.apple.com/app/id6770227009" }]
+    },
+    {
+      name: "Easel",
+      image: "assets/projects/easel.png",
+      desc: {
+        en: "A focus timer that slowly reveals a famous painting while you work. Stay focused, and the masterpiece is yours.",
+        pl: "Minutnik skupienia, który powoli odsłania słynny obraz, gdy pracujesz. Wytrwaj do końca, a arcydzieło jest Twoje.",
+        fr: "Un minuteur de concentration qui dévoile lentement un tableau célèbre pendant que vous travaillez."
+      },
+      links: [
+        { label: "easelfocus.app", url: "https://easelfocus.app/" },
+        { label: "App Store", url: "https://apps.apple.com/app/id6793262483" }
+      ]
     },
     {
       name: "BookWorm",
       image: "assets/projects/bookworm.png",
-      tags: ["iPhone", "iPad", "SwiftUI"],
       desc: {
         en: "A calm reading tracker for paper books, ebooks and audiobooks. Log a page in a second and keep your streak going.",
         pl: "Spokojny dziennik czytania dla książek papierowych, e-booków i audiobooków. Zapisz stronę w sekundę i nie przerywaj serii.",
         fr: "Un suivi de lecture apaisant pour livres papier, e-books et livres audio. Notez une page en une seconde et gardez votre série."
       },
       links: [
-        { label: "App Store", url: "https://apps.apple.com/app/id6761390761" },
-        { label: "ilovebookworm.com", url: "https://ilovebookworm.com/" }
+        { label: "ilovebookworm.com", url: "https://ilovebookworm.com/" },
+        { label: "App Store", url: "https://apps.apple.com/app/id6761390761" }
       ]
     },
     {
-      name: "Easel",
-      image: "assets/projects/easel.png",
-      tags: ["iPhone", "iPad", "SwiftUI"],
+      name: "Warashi",
+      image: "assets/projects/warashi.png",
       desc: {
-        en: "A focus timer that slowly reveals a famous painting while you work. Stay focused, and the masterpiece is yours.",
-        pl: "Minutnik skupienia, który powoli odsłania słynny obraz, gdy pracujesz. Wytrwaj do końca, a arcydzieło jest Twoje.",
-        fr: "Un minuteur de concentration qui dévoile lentement un tableau célèbre pendant que vous travaillez."
+        en: "A flight recorder for your Mac. A quiet menu bar app that remembers what your Mac did, every five seconds, for a year.",
+        pl: "Czarna skrzynka dla Twojego Maca. Cicha aplikacja w pasku menu, która przez rok co pięć sekund zapisuje, co robił Twój Mac.",
+        fr: "Une boîte noire pour votre Mac. Une app discrète dans la barre des menus qui retient ce que fait votre Mac, toutes les cinq secondes, pendant un an."
       },
-      links: [{ label: "App Store", url: "https://apps.apple.com/app/id6793262483" }]
-    },
-    {
-      name: "SafePoland",
-      image: "assets/projects/safepoland.png",
-      tags: ["iPhone", "5 languages"],
-      desc: {
-        en: "Emergency numbers and safety checklists for Poland, in five languages. Works offline and collects no data.",
-        pl: "Numery alarmowe i listy kontrolne bezpieczeństwa w Polsce, w pięciu językach. Działa offline i nie zbiera danych.",
-        fr: "Numéros d’urgence et listes de sécurité pour la Pologne, en cinq langues. Fonctionne hors ligne, sans collecte de données."
-      },
-      links: []                         // TODO: add App Store link
+      links: [
+        { label: "warashi.app", url: "https://warashi.app/" },
+        { label: "Free beta (Mac)", url: "https://github.com/MarkockiAdam/warashi-releases/releases/latest/download/Warashi.dmg" }
+      ]
     }
   ],
 
-  /* Journey — shown as "advancements". Oldest first. gold: true = highlighted. next: true = locked. */
+  /* CV timeline — newest first. gold: true = highlighted. next: true = locked "next quest". */
   journey: [
-    {
-      icon: "block", when: { en: "Childhood", pl: "Dzieciństwo", fr: "Enfance" },
-      title: { en: "Built my first worlds", pl: "Pierwsze zbudowane światy", fr: "Mes premiers mondes" },
-      text: {
-        en: "It started with Minecraft. I've been building things ever since.",
-        pl: "Zaczęło się od Minecrafta. Od tamtej pory ciągle coś buduję.",
-        fr: "Tout a commencé avec Minecraft. Depuis, je n'ai jamais arrêté de construire."
-      }
-    },
-    {
-      icon: "chart", when: { en: "Teens", pl: "Nastolatek", fr: "Adolescence" },
-      title: { en: "Went deep on markets", pl: "Wsiąkłem w rynki", fr: "Plongée dans les marchés" },
-      text: {
-        en: "Investing, the stock market, the basics of trading. Finance and economics became an obsession.",
-        pl: "Inwestowanie, giełda, podstawy tradingu. Finanse i ekonomia stały się obsesją.",
-        fr: "Investissement, bourse, bases du trading. La finance et l'économie sont devenues une obsession."
-      }
-    },
-    {
-      icon: "globe", when: { en: "University", pl: "Studia", fr: "Université" },
-      title: { en: "Started International Relations", pl: "Stosunki międzynarodowe", fr: "Relations internationales" },
-      text: {
-        en: "Studying conflict, power struggles, and what leaders do with power once they have it.",
-        pl: "Studiuję konflikty, walkę o władzę i to, co przywódcy z nią robią.",
-        fr: "J'étudie les conflits, les luttes de pouvoir et ce que les dirigeants en font."
-      }
-    },
-    {
-      icon: "star", when: { en: "Programme", pl: "Program", fr: "Programme" },
-      title: { en: "Joined WISE", pl: "Dołączyłem do WISE", fr: "Membre de WISE" },
-      text: {
-        en: "Elite student programme at Kraków University of Economics.",
-        pl: "Elitarny program studencki Uniwersytetu Ekonomicznego w Krakowie.",
-        fr: "Programme d'excellence de l'Université d'économie de Cracovie."
-      }
-    },
-    {
-      icon: "flag", when: { en: "2026", pl: "2026", fr: "2026" },
-      title: { en: "Co-founded Terra Cracovianum", pl: "Współzałożyłem Terra Cracovianum", fr: "Cofondé Terra Cracovianum" },
-      text: {
-        en: "An independent Kraków think tank on geopolitics, diplomacy and armed conflict. Free analysis, no paywall.",
-        pl: "Niezależny krakowski think tank: geopolityka, dyplomacja i konflikty zbrojne. Darmowe analizy, bez paywalla.",
-        fr: "Un think tank indépendant à Cracovie : géopolitique, diplomatie et conflits armés. Analyses gratuites, sans paywall."
-      },
-      link: { label: "terracracovianum.org", url: "https://terracracovianum.org/" }
-    },
-    {
-      icon: "trophy", gold: true, when: { en: "2026", pl: "2026", fr: "2026" },
-      title: { en: "Won the Swift Student Challenge", pl: "Wygrałem Swift Student Challenge", fr: "Lauréat du Swift Student Challenge" },
-      text: {
-        en: "Selected as a winner of Apple's Swift Student Challenge.",
-        pl: "Jeden ze zwycięzców Swift Student Challenge organizowanego przez Apple.",
-        fr: "Sélectionné parmi les lauréats du Swift Student Challenge d'Apple."
-      }
-    },
     {
       icon: "crown", next: true, when: { en: "Next quest", pl: "Następna misja", fr: "Prochaine quête" },
       title: { en: "Where technology meets global affairs", pl: "Tam, gdzie technologia spotyka geopolitykę", fr: "Là où la tech rencontre la géopolitique" },
@@ -137,18 +85,88 @@ window.SITE = {
         pl: "Budowanie na styku technologii i władzy. Ładowanie…",
         fr: "Construire à la croisée de la tech et du pouvoir. Chargement…"
       }
+    },
+    {
+      icon: "trophy", gold: true, when: { en: "2026", pl: "2026", fr: "2026" },
+      title: { en: "Apple Swift Student Challenge — Winner", pl: "Apple Swift Student Challenge — zwycięzca", fr: "Apple Swift Student Challenge — lauréat" },
+      text: {
+        en: "My iOS app SafePoland, a guide to preparing for emergency situations, was selected by Apple as a winning submission.",
+        pl: "Moja aplikacja SafePoland, przewodnik przygotowania na sytuacje kryzysowe, została wybrana przez Apple jako zwycięskie zgłoszenie.",
+        fr: "Mon app iOS SafePoland, un guide pour se préparer aux situations d’urgence, a été choisie par Apple parmi les projets lauréats."
+      },
+      image: "assets/ssc-certificate.png"
+    },
+    {
+      icon: "flag", when: { en: "2026 — now", pl: "2026 — obecnie", fr: "2026 — aujourd’hui" },
+      title: { en: "Co-founder & President, Terra Cracovianum", pl: "Współzałożyciel i prezes, Terra Cracovianum", fr: "Cofondateur et président, Terra Cracovianum" },
+      text: {
+        en: "An independent Kraków think tank on geopolitics, diplomacy and armed conflict. Free analysis, no paywall.",
+        pl: "Niezależny krakowski think tank: geopolityka, dyplomacja i konflikty zbrojne. Darmowe analizy, bez paywalla.",
+        fr: "Un think tank indépendant à Cracovie : géopolitique, diplomatie et conflits armés. Analyses gratuites, sans paywall."
+      },
+      link: { label: "terracracovianum.org", url: "https://terracracovianum.org/" }
+    },
+    {
+      icon: "globe", when: { en: "2024 — 2027", pl: "2024 — 2027", fr: "2024 — 2027" },
+      title: { en: "International Relations", pl: "Stosunki międzynarodowe", fr: "Relations internationales" },
+      text: {
+        en: "Krakow University of Economics. Member of the UEK Honors programme WISE.",
+        pl: "Uniwersytet Ekonomiczny w Krakowie. Członek programu UEK Honors WISE.",
+        fr: "Université d’économie de Cracovie. Membre du programme d’excellence UEK Honors WISE."
+      }
+    },
+    {
+      icon: "book", when: { en: "2020 — 2024", pl: "2020 — 2024", fr: "2020 — 2024" },
+      title: { en: "High school, Matura 2024", pl: "Liceum, matura 2024", fr: "Lycée, baccalauréat polonais 2024" },
+      text: {
+        en: "Catholic Montessori High School of the Righteous Among the Nations, Kraków.",
+        pl: "Katolickie Liceum Montessori im. Sprawiedliwych wśród Narodów Świata w Krakowie.",   // TODO: check official Polish name
+        fr: "Lycée catholique Montessori des Justes parmi les Nations, Cracovie."
+      }
     }
   ],
+
+  /* The rest of the CV. Places stay as written; titles are translated. */
+  cv: {
+    experience: [
+      { title: { en: "Volunteer", pl: "Wolontariusz", fr: "Bénévole" }, place: "Padre Pio Charitable Organization, Kraków", years: "2015 — now" },
+      { title: { en: "Restaurant team member", pl: "Członek zespołu restauracji", fr: "Équipier de restaurant" }, place: "McDonald’s, Kraków", years: "Jun — Sep 2024" },
+      { title: { en: "Treasurer", pl: "Skarbnik", fr: "Trésorier" }, place: "Student company", years: "2022 — 2023" },
+      { title: { en: "Painter", pl: "Malarz", fr: "Peintre" }, place: "Summer job", years: "Jul — Aug 2021" }
+    ],
+    activities: [
+      { title: { en: "Member", pl: "Członek", fr: "Membre" }, place: "UEK Honors WISE" },
+      { title: { en: "Member", pl: "Członek", fr: "Membre" }, place: "Geopolitics & Economic Geography Student Society" },
+      { title: { en: "Finalist", pl: "Finalista", fr: "Finaliste" }, place: "Edu for Edu — Zwolnieni z Teorii" }
+    ],
+    skills: ["Swift / SwiftUI", "Python (basics)", "Prompt engineering", "Figma UI/UX", "Canva", "DaVinci Resolve", "MS Office"],
+    certificates: [
+      "Google Project Management — Coursera",
+      "Google AI Essentials — Coursera",
+      "UI/UX Fundamentals in Figma — Udemy",
+      "Project Management Principles — Zwolnieni z Teorii",
+      "Vibe Coding Fundamentals — Scrimba",
+      "Prompt Engineering for ChatGPT — Vanderbilt University",
+      "Forward Program — McKinsey & Company"
+    ],
+    languages: [
+      { name: { en: "Polish", pl: "Polski", fr: "Polonais" }, level: { en: "Native", pl: "Ojczysty", fr: "Langue maternelle" } },
+      { name: { en: "English", pl: "Angielski", fr: "Anglais" }, level: { en: "C2", pl: "C2", fr: "C2" } },
+      { name: { en: "French", pl: "Francuski", fr: "Français" }, level: { en: "A1–A2", pl: "A1–A2", fr: "A1–A2" } }
+    ]
+  },
 
   heroes: ["Napoleon", "Steve Jobs", "James Dyson"],
 
   /* Interface text in each language. */
   i18n: {
     en: {
+      "cv.experience": "Experience", "cv.activities": "Activities", "cv.skills": "Skills",
+      "cv.certificates": "Certificates", "cv.languages": "Languages", "work.winner": "Swift Student Challenge ’26 winner",
       "meta.title": "Adam Markocki — Builder of apps. Student of power.",
       "hero.eyebrow": "Kraków, Poland 🇵🇱",
       "hero.title": "Builder of apps.<br>Student of power.",
-      "hero.lede": "I’m Adam. I study international relations and build apps for iPhone and the web. Swift Student Challenge winner 2026.",
+      "hero.lede": "I’m Adam. I study international relations in Kraków and build apps for iPhone and Mac. Apple Swift Student Challenge winner 2026.",
       "hero.cta1": "See my work",
       "hero.cta2": "Get in touch",
       "badge.ssc": "Swift Student Challenge Winner ’26",
@@ -163,13 +181,13 @@ window.SITE = {
       "code.error": "Couldn’t load contributions right now.",
       "code.open": "Open GitHub",
       "about.kicker": "03 / About",
-      "about.title": "From Minecraft to the world stage",
-      "about.p1": "I’ve been building things since I was a kid. First it was worlds in Minecraft. Now it’s apps people use every day.",
-      "about.p2": "I study international relations because I’m fascinated by power: who wins it, how they keep it, and what they build with it. When I get sick of politics, I go to tech. When I feel too stupid for tech, I go back to politics.",
+      "about.title": "Between politics and tech",
+      "about.p1": "Proudly Polish 🇵🇱. I study international relations, and when I get sick of politics, I go to tech. When I feel too stupid for tech, I go back to politics.",
+      "about.p2": "I’m fascinated by power: who wins it, how they keep it, and what they build with it. That’s why I co-founded Terra Cracovianum, and why I ship my own apps.",
       "about.p3": "I love reading about people who built big things. David Senra’s Founders podcast turned it into a habit.",
       "about.heroes": "People I learn from",
-      "journey.kicker": "04 / Journey",
-      "journey.title": "Advancements",
+      "journey.kicker": "04 / CV",
+      "journey.title": "Experience & education",
       "journey.locked": "Locked",
       "contact.kicker": "05 / Contact",
       "contact.title": "Let’s build something.",
@@ -178,17 +196,19 @@ window.SITE = {
       "contact.copied": "Email copied",
       "footer.made": "Built by hand in Kraków.",
       "nav.home": "Home", "nav.work": "Work", "nav.code": "Code",
-      "nav.about": "About", "nav.journey": "Journey", "nav.contact": "Contact",
+      "nav.about": "About", "nav.journey": "CV", "nav.contact": "Contact",
       "ui.sound": "Sound", "ui.theme": "Day / night", "ui.lang": "Language",
       "toast.title": "Achievement unlocked!",
       "toast.ssc": "Swift Student Challenge Winner 2026",
       "toast.explorer": "Explorer — you reached the end"
     },
     pl: {
+      "cv.experience": "Doświadczenie", "cv.activities": "Aktywności", "cv.skills": "Umiejętności",
+      "cv.certificates": "Certyfikaty", "cv.languages": "Języki", "work.winner": "Zwycięzca Swift Student Challenge ’26",
       "meta.title": "Adam Markocki — Buduję aplikacje. Badam władzę.",
       "hero.eyebrow": "Kraków, Polska 🇵🇱",
       "hero.title": "Buduję aplikacje.<br>Badam władzę.",
-      "hero.lede": "Jestem Adam. Studiuję stosunki międzynarodowe i tworzę aplikacje na iPhone’a i na web. Zwycięzca Swift Student Challenge 2026.",
+      "hero.lede": "Jestem Adam. Studiuję stosunki międzynarodowe w Krakowie i tworzę aplikacje na iPhone’a i Maca. Zwycięzca Apple Swift Student Challenge 2026.",
       "hero.cta1": "Zobacz projekty",
       "hero.cta2": "Napisz do mnie",
       "badge.ssc": "Zwycięzca Swift Student Challenge ’26",
@@ -203,13 +223,13 @@ window.SITE = {
       "code.error": "Nie udało się teraz wczytać kontrybucji.",
       "code.open": "Otwórz GitHub",
       "about.kicker": "03 / O mnie",
-      "about.title": "Od Minecrafta do sceny światowej",
-      "about.p1": "Buduję od dziecka. Najpierw były to światy w Minecrafcie. Teraz to aplikacje, z których ludzie korzystają na co dzień.",
-      "about.p2": "Studiuję stosunki międzynarodowe, bo fascynuje mnie władza: kto ją zdobywa, jak ją utrzymuje i co z nią buduje. Kiedy mam dość polityki, idę w technologię. Kiedy czuję się za głupi na technologię, wracam do polityki.",
+      "about.title": "Między polityką a technologią",
+      "about.p1": "Dumny Polak 🇵🇱. Studiuję stosunki międzynarodowe, a kiedy mam dość polityki, idę w technologię. Kiedy czuję się za głupi na technologię, wracam do polityki.",
+      "about.p2": "Fascynuje mnie władza: kto ją zdobywa, jak ją utrzymuje i co z nią buduje. Dlatego współzałożyłem Terra Cracovianum i dlatego wydaję własne aplikacje.",
       "about.p3": "Uwielbiam czytać o ludziach, którzy zbudowali wielkie rzeczy. Podcast Founders Davida Senry zrobił z tego nawyk.",
       "about.heroes": "Od kogo się uczę",
-      "journey.kicker": "04 / Droga",
-      "journey.title": "Osiągnięcia",
+      "journey.kicker": "04 / CV",
+      "journey.title": "Doświadczenie i edukacja",
       "journey.locked": "Zablokowane",
       "contact.kicker": "05 / Kontakt",
       "contact.title": "Zbudujmy coś razem.",
@@ -218,17 +238,19 @@ window.SITE = {
       "contact.copied": "Skopiowano adres",
       "footer.made": "Zrobione ręcznie w Krakowie.",
       "nav.home": "Start", "nav.work": "Projekty", "nav.code": "Kod",
-      "nav.about": "O mnie", "nav.journey": "Droga", "nav.contact": "Kontakt",
+      "nav.about": "O mnie", "nav.journey": "CV", "nav.contact": "Kontakt",
       "ui.sound": "Dźwięk", "ui.theme": "Dzień / noc", "ui.lang": "Język",
       "toast.title": "Osiągnięcie odblokowane!",
       "toast.ssc": "Zwycięzca Swift Student Challenge 2026",
       "toast.explorer": "Odkrywca — dotarłeś do końca"
     },
     fr: {
+      "cv.experience": "Expérience", "cv.activities": "Activités", "cv.skills": "Compétences",
+      "cv.certificates": "Certificats", "cv.languages": "Langues", "work.winner": "Lauréat Swift Student Challenge ’26",
       "meta.title": "Adam Markocki — Je crée des apps. J’étudie le pouvoir.",
       "hero.eyebrow": "Cracovie, Pologne 🇵🇱",
       "hero.title": "Je crée des apps.<br>J’étudie le pouvoir.",
-      "hero.lede": "Je suis Adam. J’étudie les relations internationales et je crée des apps pour iPhone et le web. Lauréat du Swift Student Challenge 2026.",
+      "hero.lede": "Je suis Adam. J’étudie les relations internationales à Cracovie et je crée des apps pour iPhone et Mac. Lauréat du Swift Student Challenge d’Apple 2026.",
       "hero.cta1": "Voir mes projets",
       "hero.cta2": "Me contacter",
       "badge.ssc": "Lauréat Swift Student Challenge ’26",
@@ -243,13 +265,13 @@ window.SITE = {
       "code.error": "Impossible de charger les contributions pour le moment.",
       "code.open": "Ouvrir GitHub",
       "about.kicker": "03 / À propos",
-      "about.title": "De Minecraft à la scène mondiale",
-      "about.p1": "Je construis depuis que je suis enfant. D’abord des mondes dans Minecraft. Aujourd’hui, des apps que les gens utilisent chaque jour.",
-      "about.p2": "J’étudie les relations internationales parce que le pouvoir me fascine : qui le conquiert, comment on le garde, et ce qu’on en fait. Quand j’en ai assez de la politique, je passe à la tech. Quand je me sens trop bête pour la tech, je reviens à la politique.",
+      "about.title": "Entre politique et tech",
+      "about.p1": "Fièrement polonais 🇵🇱. J’étudie les relations internationales, et quand j’en ai assez de la politique, je passe à la tech. Quand je me sens trop bête pour la tech, je reviens à la politique.",
+      "about.p2": "Le pouvoir me fascine : qui le conquiert, comment on le garde, et ce qu’on en fait. C’est pour ça que j’ai cofondé Terra Cracovianum, et que je publie mes propres apps.",
       "about.p3": "J’adore lire sur ceux qui ont bâti de grandes choses. Le podcast Founders de David Senra en a fait une habitude.",
       "about.heroes": "Ceux qui m’inspirent",
-      "journey.kicker": "04 / Parcours",
-      "journey.title": "Progrès",
+      "journey.kicker": "04 / CV",
+      "journey.title": "Expérience et formation",
       "journey.locked": "Verrouillé",
       "contact.kicker": "05 / Contact",
       "contact.title": "Construisons quelque chose.",
@@ -258,7 +280,7 @@ window.SITE = {
       "contact.copied": "Adresse copiée",
       "footer.made": "Fait main à Cracovie.",
       "nav.home": "Accueil", "nav.work": "Projets", "nav.code": "Code",
-      "nav.about": "À propos", "nav.journey": "Parcours", "nav.contact": "Contact",
+      "nav.about": "À propos", "nav.journey": "CV", "nav.contact": "Contact",
       "ui.sound": "Son", "ui.theme": "Jour / nuit", "ui.lang": "Langue",
       "toast.title": "Succès débloqué !",
       "toast.ssc": "Lauréat du Swift Student Challenge 2026",

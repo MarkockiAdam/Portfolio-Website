@@ -68,9 +68,8 @@
       var links = (p.links || []).map(function (l) {
         return '<a class="link-arrow" href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.label) + ' ↗</a>';
       }).join('');
-      var tags = (p.tags || []).map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('');
       return '<article class="project panel notch reveal" style="--i:' + i + '">' +
-        '<div class="project-top">' + (p.image ? '<img class="app-icon" src="' + esc(p.image) + '" alt="" width="64" height="64" loading="lazy">' : '<span class="tile notch">' + PixelIcon(p.icon) + '</span>') + '<ul class="tags">' + tags + '</ul></div>' +
+        '<div class="project-top">' + (p.image ? '<img class="app-icon" src="' + esc(p.image) + '" alt="" width="64" height="64" loading="lazy">' : '<span class="tile notch">' + PixelIcon(p.icon) + '</span>') + (p.badge ? '<span class="win notch">' + PixelIcon('trophy') + '<span>' + esc(T('work.winner')) + '</span></span>' : '') + '</div>' +
         '<h3>' + esc(p.name) + '</h3><p>' + esc(p.desc[lang] || p.desc.en) + '</p>' +
         '<div class="project-links">' + links + '</div></article>';
     }).join('');
@@ -85,9 +84,30 @@
         '<p class="when px">' + esc(q.when[lang] || q.when.en) + '</p>' +
         '<h3>' + esc(q.title[lang] || q.title.en) + '</h3>' +
         '<p>' + esc(q.text[lang] || q.text.en) + '</p>' +
+        (q.image ? '<img class="quest-img" src="' + esc(q.image) + '" alt="" width="160" height="160" loading="lazy">' : '') +
         (q.link ? '<a class="link-arrow" href="' + esc(q.link.url) + '" target="_blank" rel="noopener">' + esc(q.link.label) + ' ↗</a>' : '') +
         '</div></li>';
     }).join('');
+  }
+
+  function renderCV() {
+    var cv = S.cv, L = function (o) { return typeof o === 'string' ? o : (o[lang] || o.en); };
+    var rows = function (list) {
+      return '<ul class="cv-rows">' + list.map(function (r) {
+        return '<li><span><strong>' + esc(L(r.title)) + '</strong> · ' + esc(r.place) + '</span>' + (r.years ? '<span class="years">' + esc(r.years) + '</span>' : '') + '</li>';
+      }).join('') + '</ul>';
+    };
+    var card = function (key, body, wide) {
+      return '<section class="cv-card panel notch reveal' + (wide ? ' wide' : '') + '"><h3 class="px">' + esc(T(key)) + '</h3>' + body + '</section>';
+    };
+    $('#cv').innerHTML =
+      card('cv.experience', rows(cv.experience), true) +
+      card('cv.activities', rows(cv.activities)) +
+      card('cv.languages', '<ul class="cv-rows">' + cv.languages.map(function (l) {
+        return '<li><strong>' + esc(L(l.name)) + '</strong><span class="years">' + esc(L(l.level)) + '</span></li>';
+      }).join('') + '</ul>') +
+      card('cv.skills', '<ul class="chips">' + cv.skills.map(function (s) { return '<li class="chip notch">' + esc(s) + '</li>'; }).join('') + '</ul>') +
+      card('cv.certificates', '<ul class="cv-list">' + cv.certificates.map(function (c) { return '<li>' + esc(c) + '</li>'; }).join('') + '</ul>', true);
   }
 
   function renderStatic() {
@@ -107,7 +127,7 @@
     $$('[data-i18n-label]').forEach(function (el) { el.setAttribute('aria-label', T(el.dataset.i18nLabel)); });
     $$('.lang button').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.lang === lang); });
     document.title = T('meta.title');
-    renderProjects(); renderJourney(); updateHeatTotal();
+    renderProjects(); renderJourney(); renderCV(); updateHeatTotal();
     paintIcons(); observeReveals();
   }
   $$('.lang button').forEach(function (b) {
