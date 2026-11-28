@@ -21,8 +21,9 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Silkscreen&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Silkscreen&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/atlas.css">
   <script>
     /* Set theme + language before paint so nothing flashes. */
     (function () {
@@ -32,6 +33,11 @@
       d.dataset.theme = t;
       if (!l) { var n = (navigator.language || 'en').slice(0, 2); l = ['pl', 'fr'].indexOf(n) > -1 ? n : 'en'; }
       d.lang = l;
+      /* Style: ?skin= wins, then the saved choice; none yet = show the first-visit picker. */
+      var k = (location.search.match(/[?&]skin=(pixel|atlas)/) || [])[1], saved = null;
+      try { saved = localStorage.getItem('skin'); } catch (e) {}
+      d.dataset.skin = k || saved || 'pixel';
+      if (!k && !saved) d.dataset.picker = '1';
     })();
   </script>
 </head>
@@ -44,6 +50,10 @@
       <span class="mark-name">Adam Markocki</span>
     </a>
     <div class="controls">
+      <div class="skin-switch" role="group" data-i18n-label="skin.label" aria-label="Style">
+        <button type="button" data-skin-set="pixel">PIXEL</button>
+        <button type="button" data-skin-set="atlas">ATLAS</button>
+      </div>
       <div class="lang" role="group" data-i18n-label="ui.lang" aria-label="Language">
         <button type="button" data-lang="en">EN</button>
         <button type="button" data-lang="pl">PL</button>
@@ -174,10 +184,43 @@
 
   <div class="toasts" id="toasts" aria-live="polite"></div>
 
+  <div id="atlas" class="atlas" hidden></div>
+  <div id="boot" class="boot" aria-hidden="true"></div>
+  <canvas id="dissolve" class="dissolve" aria-hidden="true"></canvas>
+
+  <div id="skin-picker" class="picker" role="dialog" aria-modal="true" aria-labelledby="picker-title" hidden>
+    <div class="picker-top">
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="pl">PL</button>
+        <button type="button" data-lang="fr">FR</button>
+      </div>
+    </div>
+    <div class="picker-inner">
+      <p class="picker-name">Adam Markocki</p>
+      <h1 id="picker-title" data-i18n="picker.title">How do you want to explore?</h1>
+      <div class="picker-cards">
+        <button type="button" class="pick pick-pixel" data-pick="pixel">
+          <span class="pick-art"><span class="pick-sky"></span><span class="pick-sun"></span><span class="pick-grass"></span></span>
+          <span class="pick-name">PIXEL</span>
+          <span class="pick-desc" data-i18n="picker.pixel"></span>
+        </button>
+        <button type="button" class="pick pick-atlas" data-pick="atlas">
+          <span class="pick-art"><canvas class="pick-map" width="320" height="150"></canvas><span class="pick-scan"></span></span>
+          <span class="pick-name">ATLAS</span>
+          <span class="pick-desc" data-i18n="picker.atlas"></span>
+        </button>
+      </div>
+      <p class="picker-hint" data-i18n="picker.hint"></p>
+    </div>
+  </div>
+
   <script src="content.js"></script>
   <script src="js/icons.js"></script>
   <script src="js/sky.js"></script>
   <script src="js/meadow.js"></script>
+  <script src="js/worldmap-data.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/atlas.js"></script>
 </body>
 </html>

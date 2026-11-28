@@ -89,7 +89,8 @@
   var reduce = matchMedia('(prefers-reduced-motion: reduce)');
   var ptr = { x: -1e4, y: -1e4, tx: -1e4, ty: -1e4 };
   var night = document.documentElement.dataset.theme === 'night' ? 1 : 0, nightTarget = night;
-  var running = true, last = 0, t0 = performance.now(), frozenT = 40;
+  var paused = document.documentElement.dataset.skin === 'atlas';
+  var running = !paused, last = 0, t0 = performance.now(), frozenT = 40;
 
   function resize() {
     cell = innerWidth < 700 ? 3 : 4;
@@ -132,11 +133,14 @@
   document.addEventListener('pointerleave', function () { ptr.tx = ptr.ty = -1e4; });
   addEventListener('scroll', function () { if (reduce.matches) requestAnimationFrame(draw); }, { passive: true });
   document.addEventListener('visibilitychange', function () {
-    running = !document.hidden;
-    if (running) requestAnimationFrame(loop);
+    var was = running;
+    running = !document.hidden && !paused;
+    if (running && !was) requestAnimationFrame(loop);
   });
 
   window.Sky = {
+    pause: function () { paused = true; running = false; },
+    resume: function () { if (!paused) return; paused = false; running = true; resize(); requestAnimationFrame(loop); },
     setNight: function (on) {
       nightTarget = on ? 1 : 0;
       if (reduce.matches) { night = nightTarget; draw(performance.now()); }
