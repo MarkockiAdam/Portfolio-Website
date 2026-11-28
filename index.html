@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Adam Markocki — Builder of apps. Student of power.</title>
+  <meta name="description" content="Adam Markocki — international relations student and app builder from Kraków. Swift Student Challenge winner 2026, think tank co-founder, WISE member.">
+  <meta name="theme-color" content="#3d6fe0">
+  <link rel="canonical" href="https://markockiadam.com/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://markockiadam.com/">
+  <meta property="og:title" content="Adam Markocki — Builder of apps. Student of power.">
+  <meta property="og:description" content="IR student, app builder, Swift Student Challenge winner 2026.">
+  <meta property="og:image" content="https://markockiadam.com/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Adam Markocki — Builder of apps. Student of power.">
+  <meta name="twitter:description" content="IR student, app builder, Swift Student Challenge winner 2026.">
+  <meta name="twitter:image" content="https://markockiadam.com/assets/og.png">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Silkscreen&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    /* Set theme + language before paint so nothing flashes. */
+    (function () {
+      var d = document.documentElement, t, l;
+      try { t = localStorage.getItem('theme'); l = localStorage.getItem('lang'); } catch (e) {}
+      if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'day';
+      d.dataset.theme = t;
+      if (!l) { var n = (navigator.language || 'en').slice(0, 2); l = ['pl', 'fr'].indexOf(n) > -1 ? n : 'en'; }
+      d.lang = l;
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip" href="#work">Skip to content</a>
+  <canvas id="sky" aria-hidden="true"></canvas>
+
+  <header class="topbar">
+    <a class="mark" href="#home" aria-label="Adam Markocki, home">
+      <span class="mark-name">Adam Markocki</span>
+    </a>
+    <div class="controls">
+      <div class="lang" role="group" data-i18n-label="ui.lang" aria-label="Language">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="pl">PL</button>
+        <button type="button" data-lang="fr">FR</button>
+      </div>
+      <button type="button" class="icon-btn" id="sound" aria-pressed="false" data-i18n-label="ui.sound" aria-label="Sound">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path class="on" d="M2 6h3l4-3v10l-4-3H2zM11 5h1v1h1v4h-1v1h-1v-1h1V6h-1z"/><path class="off" d="M2 6h3l4-3v10l-4-3H2zM11 6h1v1h1V6h1v1h-1v2h1v1h-1V9h-1v1h-1V9h1V7h-1z"/></svg>
+      </button>
+      <button type="button" class="icon-btn" id="theme" data-i18n-label="ui.theme" aria-label="Day / night">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path class="sun" d="M7 1h2v2H7zM7 13h2v2H7zM1 7h2v2H1zM13 7h2v2h-2zM3 3h2v2H3zM11 3h2v2h-2zM3 11h2v2H3zM11 11h2v2h-2zM6 5h4v1h1v4h-1v1H6v-1H5V6h1z"/><path class="moon" d="M6 2h4v1H8v1H7v2H6v4h1v2h1v1h3v1H6v-1H4v-2H3V5h1V3h2z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home" data-section="0">
+      <div class="hello" data-dim>
+        <p class="eyebrow px" data-i18n="hero.eyebrow">Kraków, Poland 🇵🇱</p>
+      </div>
+      <h1 class="hero-title" data-dim data-i18n="hero.title">Builder of apps.<br>Student of power.</h1>
+      <p class="lede" data-dim data-i18n="hero.lede">I’m Adam. I study international relations in Kraków and build apps for iPhone and Mac. Apple Swift Student Challenge winner 2026.</p>
+      <div class="cta">
+        <a class="btn btn-primary notch" href="#work" data-i18n="hero.cta1">See my work</a>
+        <a class="btn btn-ghost notch" href="#contact" data-i18n="hero.cta2">Get in touch</a>
+      </div>
+      <ul class="badges">
+        <li class="badge notch gold"><span data-icon="trophy"></span><span data-i18n="badge.ssc">Swift Student Challenge Winner ’26</span></li>
+        <li class="badge notch"><span data-icon="flag"></span><span data-i18n="badge.tank">Think tank co-founder</span></li>
+        <li class="badge notch"><span data-icon="star"></span><span data-i18n="badge.wise">WISE · Kraków Univ. of Economics</span></li>
+      </ul>
+    </section>
+
+    <section class="section" id="work" data-section="1">
+      <header class="section-head reveal" data-dim>
+        <p class="kicker px" data-i18n="work.kicker">01 / Work</p>
+        <h2 data-i18n="work.title">Things I’ve built</h2>
+      </header>
+      <div class="projects" id="projects"></div>
+      <div class="collab" id="collab"></div>
+    </section>
+
+    <section class="section" id="code" data-section="2">
+      <div class="panel notch reveal heat-panel">
+        <div class="heat-head">
+          <div>
+            <p class="kicker px" data-i18n="code.kicker">02 / Code</p>
+            <h2 data-i18n="code.title">Blocks placed this year</h2>
+            <p class="muted" id="heat-total" data-i18n="code.sub">Every square is a day on GitHub.</p>
+          </div>
+          <a class="link-arrow" id="gh-link" href="https://github.com/MarkockiAdam" target="_blank" rel="noopener"><span data-i18n="code.open">Open GitHub</span> ↗</a>
+        </div>
+        <div class="heat-scroll"><div class="heat" id="heat" role="img" aria-label="GitHub contributions in the last year"></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="about" data-section="3">
+      <div class="about panel notch reveal">
+        <div class="avatar notch" id="avatar"><span data-icon="block"></span></div>
+        <div class="about-body">
+          <p class="kicker px" data-i18n="about.kicker">03 / About</p>
+          <h2 data-i18n="about.title">Between politics and tech</h2>
+          <p data-i18n="about.p1"></p>
+          <p class="heroes-label px" data-i18n="about.follow">Follow me</p>
+          <ul class="about-socials" id="about-socials"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="journey" data-section="4">
+      <header class="section-head reveal" data-dim>
+        <p class="kicker px" data-i18n="journey.kicker">04 / CV</p>
+        <h2 data-i18n="journey.title">Experience &amp; education</h2>
+      </header>
+      <ol class="quests" id="quests"></ol>
+      <button type="button" class="chest panel notch reveal" id="chest" aria-expanded="false" aria-controls="cv-drawer">
+        <span class="chest-art">
+          <svg class="chest-svg" viewBox="0 0 20 18" shape-rendering="crispEdges" aria-hidden="true">
+            <g class="chest-glow"><rect x="3" y="6" width="14" height="2" fill="#fff3b0"/><rect x="5" y="4" width="10" height="2" fill="#ffe27a" opacity=".7"/><rect x="7" y="2" width="6" height="2" fill="#ffe27a" opacity=".4"/></g>
+            <g class="chest-base">
+              <rect x="2" y="9" width="16" height="8" fill="#8a5a2b"/><rect x="2" y="9" width="16" height="1" fill="#5e3b1a"/>
+              <rect x="3" y="11" width="14" height="1" fill="#a8743d"/><rect x="3" y="14" width="14" height="1" fill="#a8743d"/>
+              <rect x="2" y="9" width="1" height="8" fill="#4a2e14"/><rect x="17" y="9" width="1" height="8" fill="#4a2e14"/><rect x="2" y="16" width="16" height="1" fill="#4a2e14"/>
+              <rect x="9" y="9" width="2" height="3" fill="#f7c948"/><rect x="9" y="11" width="2" height="1" fill="#c9971c"/>
+            </g>
+            <g class="chest-lid">
+              <rect x="2" y="4" width="16" height="5" fill="#9a6532"/><rect x="2" y="4" width="16" height="1" fill="#b87d44"/>
+              <rect x="2" y="4" width="1" height="5" fill="#4a2e14"/><rect x="17" y="4" width="1" height="5" fill="#4a2e14"/><rect x="2" y="3" width="16" height="1" fill="#4a2e14"/>
+              <rect x="3" y="7" width="14" height="1" fill="#7a4d22"/><rect x="9" y="7" width="2" height="2" fill="#f7c948"/>
+            </g>
+          </svg>
+          <span class="loot" id="loot" aria-hidden="true"></span>
+        </span>
+        <span class="chest-text">
+          <strong class="chest-title" data-i18n="cv.open">Open my full CV</strong>
+          <span class="chest-hint" data-i18n="cv.hint">Experience · activities · languages · certificates</span>
+        </span>
+        <span class="chest-key px" aria-hidden="true">E</span>
+      </button>
+      <div class="cv-drawer" id="cv-drawer" inert>
+        <div class="cv-drawer-inner"><div class="cv-grid" id="cv"></div></div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact" data-section="5">
+      <p class="kicker px reveal" data-dim data-i18n="contact.kicker">05 / Contact</p>
+      <h2 class="contact-title reveal" data-dim data-i18n="contact.title">My inbox is open.</h2>
+      <p class="lede reveal" data-dim data-i18n="contact.text"></p>
+      <div class="cta reveal">
+        <button type="button" class="btn btn-primary notch" id="email-btn"><span data-i18n="contact.email">Email me</span></button>
+      </div>
+      <ul class="socials reveal" data-dim id="socials"></ul>
+    </section>
+  </main>
+
+  <footer class="ground">
+    <p class="foot-note" data-dim><span>© 2026 Adam Markocki</span> · <span data-i18n="footer.made">Built in Kraków, Poland.</span></p>
+    <canvas id="meadow" aria-hidden="true"></canvas>
+  </footer>
+
+  <nav class="hotbar" aria-label="Sections">
+    <a href="#home" data-slot="0"><span data-icon="block"></span><kbd>1</kbd><span class="tip" data-i18n="nav.home">Home</span></a>
+    <a href="#work" data-slot="1"><span data-icon="pick"></span><kbd>2</kbd><span class="tip" data-i18n="nav.work">Work</span></a>
+    <a href="#code" data-slot="2"><span data-icon="grid"></span><kbd>3</kbd><span class="tip" data-i18n="nav.code">Code</span></a>
+    <a href="#about" data-slot="3"><span data-icon="heart"></span><kbd>4</kbd><span class="tip" data-i18n="nav.about">About</span></a>
+    <a href="#journey" data-slot="4"><span data-icon="globe"></span><kbd>5</kbd><span class="tip" data-i18n="nav.journey">CV</span></a>
+    <a href="#contact" data-slot="5"><span data-icon="mail"></span><kbd>6</kbd><span class="tip" data-i18n="nav.contact">Contact</span></a>
+  </nav>
+
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+
+  <script src="content.js"></script>
+  <script src="js/icons.js"></script>
+  <script src="js/sky.js"></script>
+  <script src="js/meadow.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
