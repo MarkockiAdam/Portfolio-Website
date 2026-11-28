@@ -23,9 +23,9 @@
       actx = actx || new (window.AudioContext || window.webkitAudioContext)();
       notes.forEach(function (f, i) {
         var o = actx.createOscillator(), g = actx.createGain(), at = actx.currentTime + i * 0.09;
-        o.type = 'square'; o.frequency.value = f;
+        o.type = doc.dataset.skin === 'atlas' ? 'sine' : 'square'; o.frequency.value = f;
         g.gain.setValueAtTime(0.0001, at);
-        g.gain.exponentialRampToValueAtTime(0.06, at + 0.01);
+        g.gain.exponentialRampToValueAtTime(doc.dataset.skin === 'atlas' ? 0.035 : 0.06, at + 0.01);
         g.gain.exponentialRampToValueAtTime(0.0001, at + 0.12);
         o.connect(g).connect(actx.destination); o.start(at); o.stop(at + 0.14);
       });
@@ -53,6 +53,7 @@
 
   /* ---------- toasts ---------- */
   function toast(title, text, icon) {
+    if (doc.dataset.skin === 'atlas' && window.Atlas && Atlas.toast) return Atlas.toast(title, text, icon);
     var el = document.createElement('div');
     el.className = 'toast notch';
     el.innerHTML = '<span class="toast-icon">' + PixelIcon(icon || 'trophy') + '</span>' +

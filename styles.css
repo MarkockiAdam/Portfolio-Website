@@ -580,3 +580,27 @@ h2 { font-size: clamp(34px, 5vw, 56px); }
 }
 @keyframes atlas-toast { from { opacity: 0; transform: translateY(-8px); } }
 @keyframes atlas-toast-out { to { opacity: 0; transform: translateY(-8px); } }
+
+
+/* =========================================================
+   Pixel-corner outlines: a ring that follows the stepped corners,
+   so outlines no longer stop short of the corners.
+   ========================================================= */
+.project, .chest, .tool, .quest-card, .btn-ghost, .pbtn, .toast { position: relative; --rw: 0px; --ring: transparent; }
+.project::after, .chest::after, .tool::after, .quest-card::after, .btn-ghost::after, .pbtn::after, .toast::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 2;
+  background: var(--ring); transition: background-color .25s;
+  clip-path: polygon(evenodd, calc(0px) calc(var(--n) * 2), calc(var(--n) * 1) calc(var(--n) * 2), calc(var(--n) * 1) calc(var(--n) * 1), calc(var(--n) * 2) calc(var(--n) * 1), calc(var(--n) * 2) calc(0px), calc(100% - (var(--n) * 2)) calc(0px), calc(100% - (var(--n) * 2)) calc(var(--n) * 1), calc(100% - (var(--n) * 1)) calc(var(--n) * 1), calc(100% - (var(--n) * 1)) calc(var(--n) * 2), calc(100% - (0px)) calc(var(--n) * 2), calc(100% - (0px)) calc(100% - (var(--n) * 2)), calc(100% - (var(--n) * 1)) calc(100% - (var(--n) * 2)), calc(100% - (var(--n) * 1)) calc(100% - (var(--n) * 1)), calc(100% - (var(--n) * 2)) calc(100% - (var(--n) * 1)), calc(100% - (var(--n) * 2)) calc(100% - (0px)), calc(var(--n) * 2) calc(100% - (0px)), calc(var(--n) * 2) calc(100% - (var(--n) * 1)), calc(var(--n) * 1) calc(100% - (var(--n) * 1)), calc(var(--n) * 1) calc(100% - (var(--n) * 2)), calc(0px) calc(100% - (var(--n) * 2)), calc(0px) calc(var(--n) * 2), calc(0px + var(--rw)) calc(var(--n) * 2 + var(--rw)), calc(var(--n) * 1 + var(--rw)) calc(var(--n) * 2 + var(--rw)), calc(var(--n) * 1 + var(--rw)) calc(var(--n) * 1 + var(--rw)), calc(var(--n) * 2 + var(--rw)) calc(var(--n) * 1 + var(--rw)), calc(var(--n) * 2 + var(--rw)) calc(0px + var(--rw)), calc(100% - (var(--n) * 2 + var(--rw))) calc(0px + var(--rw)), calc(100% - (var(--n) * 2 + var(--rw))) calc(var(--n) * 1 + var(--rw)), calc(100% - (var(--n) * 1 + var(--rw))) calc(var(--n) * 1 + var(--rw)), calc(100% - (var(--n) * 1 + var(--rw))) calc(var(--n) * 2 + var(--rw)), calc(100% - (0px + var(--rw))) calc(var(--n) * 2 + var(--rw)), calc(100% - (0px + var(--rw))) calc(100% - (var(--n) * 2 + var(--rw))), calc(100% - (var(--n) * 1 + var(--rw))) calc(100% - (var(--n) * 2 + var(--rw))), calc(100% - (var(--n) * 1 + var(--rw))) calc(100% - (var(--n) * 1 + var(--rw))), calc(100% - (var(--n) * 2 + var(--rw))) calc(100% - (var(--n) * 1 + var(--rw))), calc(100% - (var(--n) * 2 + var(--rw))) calc(100% - (0px + var(--rw))), calc(var(--n) * 2 + var(--rw)) calc(100% - (0px + var(--rw))), calc(var(--n) * 2 + var(--rw)) calc(100% - (var(--n) * 1 + var(--rw))), calc(var(--n) * 1 + var(--rw)) calc(100% - (var(--n) * 1 + var(--rw))), calc(var(--n) * 1 + var(--rw)) calc(100% - (var(--n) * 2 + var(--rw))), calc(0px + var(--rw)) calc(100% - (var(--n) * 2 + var(--rw))), calc(0px + var(--rw)) calc(var(--n) * 2 + var(--rw)));
+}
+.project { box-shadow: inset 0 2px 0 var(--panel-hi); --rw: 1px; --ring: color-mix(in srgb, var(--acc) 30%, transparent); }
+.project:hover { box-shadow: inset 0 2px 0 var(--panel-hi); --rw: 2px; --ring: color-mix(in srgb, var(--acc) 80%, transparent); }
+.tool:hover { box-shadow: inset 0 2px 0 var(--panel-hi); --rw: 2px; --ring: rgba(255, 255, 255, .4); }
+.quest.gold .quest-card { box-shadow: none; --rw: 2px; --ring: var(--gold); }
+.quest.next .quest-card { box-shadow: none; --rw: 2px; --ring: var(--line); }
+.chest:hover { box-shadow: inset 0 2px 0 var(--panel-hi); --rw: 2px; --ring: rgba(247, 201, 72, .6); }
+.chest.open { box-shadow: inset 0 2px 0 var(--panel-hi); --rw: 2px; --ring: var(--gold); }
+.btn-ghost { box-shadow: none; --rw: 2px; --ring: var(--line); }
+.pbtn { box-shadow: none; --rw: 1px; --ring: var(--line); }
+.pbtn.main { --ring: transparent; }
+.toast { box-shadow: none; --rw: 2px; --ring: rgba(255, 255, 255, .16); }
+[data-skin="atlas"] .toast::after { display: none; }

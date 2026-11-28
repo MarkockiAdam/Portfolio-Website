@@ -260,6 +260,7 @@ window.SITE = {
   /* Interface text in each language. */
   i18n: {
     en: {
+      "atlas.notice": "Event logged",
       "skin.label": "Style",
       "picker.title": "How do you want to explore?",
       "picker.pixel": "A playful pixel sky — apps, story and a treasure chest.",
@@ -373,6 +374,7 @@ window.SITE = {
       "toast.explorer": "Explorer — you reached the end"
     },
     pl: {
+      "atlas.notice": "Zdarzenie zarejestrowane",
       "skin.label": "Styl",
       "picker.title": "Jak chcesz zwiedzać?",
       "picker.pixel": "Zabawne pikselowe niebo — aplikacje, historia i skrzynia ze skarbem.",
@@ -486,6 +488,7 @@ window.SITE = {
       "toast.explorer": "Odkrywca — dotarłeś do końca"
     },
     fr: {
+      "atlas.notice": "Événement enregistré",
       "skin.label": "Style",
       "picker.title": "Comment voulez-vous explorer ?",
       "picker.pixel": "Un ciel en pixels ludique — apps, parcours et un coffre au trésor.",
