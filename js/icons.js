@@ -21,6 +21,9 @@
     x:      ['W......W', '.W....W.', '..W..W..', '...WW...', '...WW...', '..W..W..', '.W....W.', 'W......W'],
     linkedin: ['LLLLLLLL', 'LWLLLLLL', 'LLLLLLLL', 'LWLWWWLL', 'LWLWLLWL', 'LWLWLLWL', 'LWLWLLWL', 'LLLLLLLL'],
     instagram: ['.PPPPPP.', 'P.....OP', 'P.OOOO.P', 'P.O..O.P', 'P.O..O.P', 'P.OOOO.P', 'P......P', '.PPPPPP.'],
+    calc:   ['SSSSSSSS', 'SCCCCCCS', 'SCKKKKCS', 'SSSSSSSS', 'SKSKSKSS', 'SSSSSSSS', 'SKSKSYYS', 'SSSSSSSS'],
+    map:    ['BBGGGBBB', 'BGGGGGBB', 'BGGRGGBB', 'BBGGGGBB', 'BBBGGBBB', 'BBBBGGGB', 'BBBBGGGB', 'BBBBBBBB'],
+    ballot: ['..WWWW..', '..WRWW..', '..WWWW..', 'KKKKKKKK', 'KBBBBBBK', 'KBBKKBBK', 'KBBBBBBK', 'KKKKKKKK'],
     lock:   ['..SSSS..', '.S....S.', '.S....S.', 'SSSSSSSS', 'SSSKKSSS', 'SSSKKSSS', 'SSSSSSSS', '........']
   };
   function svg(name) {

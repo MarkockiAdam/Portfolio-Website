@@ -87,6 +87,27 @@
     }).join('');
   }
 
+  function renderCollab() {
+    var C = S.collab; if (!C) return;
+    var L = function (o) { return typeof o === 'string' ? o : (o[lang] || o.en); };
+    var arrow = '<svg class="arr" viewBox="0 0 8 8" aria-hidden="true"><path d="M2 1h5v5H6V3H5v1H4v1H3v1H2V5h1V4h1V3h1V2H2z"/></svg>';
+    $('#collab').innerHTML =
+      '<header class="collab-head reveal" data-dim>' +
+        '<img class="crest" src="' + esc(C.logo) + '" alt="" width="64" height="64" loading="lazy">' +
+        '<div class="collab-title"><p class="kicker px">' + esc(T('collab.kicker')) + '</p><h3>' + esc(C.name) + '</h3></div>' +
+        '<p class="collab-text">' + esc(T('collab.text')) + '</p>' +
+        '<a class="pbtn notch" href="' + esc(C.url) + '" target="_blank" rel="noopener"><span>' + esc(T('collab.all')) + '</span>' + arrow + '</a>' +
+      '</header>' +
+      '<div class="tools">' + C.items.map(function (t, i) {
+        return '<article class="tool panel notch reveal" style="--i:' + (i % 3) + '">' +
+          '<div class="tool-top"><span class="tool-icon notch">' + PixelIcon(t.icon) + '</span><span class="tool-kind px">' + esc(L(t.kind)) + '</span></div>' +
+          '<h4>' + esc(L(t.name)) + '</h4><p>' + esc(L(t.desc)) + '</p>' +
+          '<div class="pactions">' + t.links.map(function (l, k) {
+            return '<a class="pbtn notch' + (k === 0 ? ' main' : '') + '" href="' + esc(l.url) + '" target="_blank" rel="noopener"><span>' + esc(L(l.label)) + '</span>' + arrow + '</a>';
+          }).join('') + '</div></article>';
+      }).join('') + '</div>';
+  }
+
   function renderJourney() {
     $('#quests').innerHTML = S.journey.map(function (q) {
       var cls = 'quest reveal' + (q.gold ? ' gold' : '') + (q.next ? ' next' : '');
@@ -144,7 +165,7 @@
     $$('[data-i18n-label]').forEach(function (el) { el.setAttribute('aria-label', T(el.dataset.i18nLabel)); });
     $$('.lang button').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.lang === lang); });
     document.title = T('meta.title');
-    renderProjects(); renderJourney(); renderCV(); updateHeatTotal();
+    renderProjects(); renderCollab(); renderJourney(); renderCV(); updateHeatTotal();
     syncChest();
     paintIcons(); observeReveals();
   }

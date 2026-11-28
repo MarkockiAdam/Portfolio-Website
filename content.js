@@ -97,6 +97,79 @@ window.SITE = {
     }
   ],
 
+  /* Built in collaboration with Terra Cracovianum. icon: pixel icon name.
+     Link labels can be plain text or { en, pl, fr }. */
+  collab: {
+    name: "Terra Cracovianum",
+    logo: "assets/projects/terra-crest.png",
+    url: "https://terracracovianum.org/projekty/",
+    items: [
+      {
+        name: "Budżet Polski", icon: "chart",
+        kind: { en: "Platform · Beta", pl: "Platforma · Beta", fr: "Plateforme · Bêta" },
+        desc: {
+          en: "An interactive look at Poland’s state budget, 2011–2026: where your taxes go, compared year to year with inflation taken into account.",
+          pl: "Interaktywna wizualizacja budżetu Polski 2011–2026: na co idą Twoje podatki, z porównaniem lat z uwzględnieniem inflacji.",
+          fr: "Une visualisation interactive du budget de la Pologne, 2011–2026 : où vont vos impôts, année par année, inflation comprise."
+        },
+        links: [{ label: "budzetpolski.com", url: "https://budzetpolski.com/" }]
+      },
+      {
+        name: "terracracovianum.org", icon: "flag",
+        kind: { en: "Website", pl: "Strona", fr: "Site web" },
+        desc: {
+          en: "The think tank’s home: free analysis on geopolitics, diplomacy and armed conflict, in Polish and English.",
+          pl: "Dom think tanku: darmowe analizy o geopolityce, dyplomacji i konfliktach zbrojnych, po polsku i angielsku.",
+          fr: "La maison du think tank : analyses gratuites sur la géopolitique, la diplomatie et les conflits, en polonais et en anglais."
+        },
+        links: [{ label: { en: "Visit", pl: "Otwórz", fr: "Visiter" }, url: "https://terracracovianum.org/" }]
+      },
+      {
+        name: { en: "World Embassies", pl: "Ambasady świata", fr: "Ambassades du monde" }, icon: "globe",
+        kind: { en: "Map", pl: "Mapa", fr: "Carte" },
+        desc: {
+          en: "Embassies and consulates on one map — Warsaw, Kraków and Paris so far. Search by country or street.",
+          pl: "Ambasady i konsulaty na jednej mapie — na razie Warszawa, Kraków i Paryż. Szukaj po kraju lub ulicy.",
+          fr: "Ambassades et consulats sur une carte — Varsovie, Cracovie et Paris pour l’instant. Recherche par pays ou par rue."
+        },
+        links: [{ label: { en: "Open map", pl: "Otwórz mapę", fr: "Ouvrir la carte" }, url: "https://terra-cracovianum.github.io/World-embassies/" }]
+      },
+      {
+        name: { en: "Sejm Seat Calculator", pl: "Kalkulator Sejmowy", fr: "Calculateur de la Diète" }, icon: "calc",
+        kind: { en: "Calculator", pl: "Kalkulator", fr: "Calculateur" },
+        desc: {
+          en: "Set each party’s support and see how the 460 seats in Poland’s parliament split under the D’Hondt method.",
+          pl: "Ustaw poparcie partii i zobacz, jak 460 mandatów w Sejmie dzieli się metodą D’Hondta.",
+          fr: "Réglez le score des partis et voyez comment les 460 sièges de la Diète se répartissent selon D’Hondt."
+        },
+        links: [{ label: { en: "Try it", pl: "Wypróbuj", fr: "Essayer" }, url: "https://terra-cracovianum.github.io/Kalkulator-wynik-w-do-sejmu/" }]
+      },
+      {
+        name: { en: "Kraków Referendum 2026", pl: "Referendum Kraków 2026", fr: "Référendum de Cracovie 2026" }, icon: "map",
+        kind: { en: "Results map", pl: "Mapa wyników", fr: "Carte des résultats" },
+        desc: {
+          en: "Turnout and results of the 2026 Kraków referendum, polling station by polling station.",
+          pl: "Frekwencja i wyniki referendum w Krakowie 2026, komisja po komisji.",
+          fr: "Participation et résultats du référendum de Cracovie 2026, bureau de vote par bureau de vote."
+        },
+        links: [{ label: { en: "Open map", pl: "Otwórz mapę", fr: "Ouvrir la carte" }, url: "https://terra-cracovianum.github.io/Wyniki-Referendum-KRK-2026/" }]
+      },
+      {
+        name: { en: "Kraków Mayoral Election 2026", pl: "Wybory prezydenta Krakowa 2026", fr: "Élection du maire de Cracovie 2026" }, icon: "ballot",
+        kind: { en: "Results maps", pl: "Mapy wyników", fr: "Cartes des résultats" },
+        desc: {
+          en: "Both rounds of the snap election (27 September and 11 October 2026), down to every polling station.",
+          pl: "Obie tury przedterminowych wyborów (27 września i 11 października 2026), aż do każdej komisji.",
+          fr: "Les deux tours de l’élection anticipée (27 septembre et 11 octobre 2026), jusqu’à chaque bureau de vote."
+        },
+        links: [
+          { label: { en: "Round 1", pl: "I tura", fr: "1er tour" }, url: "https://terra-cracovianum.github.io/Krakow-Wybory-Prezydenckie-27-Wrzesnia-2026/" },
+          { label: { en: "Round 2", pl: "II tura", fr: "2nd tour" }, url: "https://terra-cracovianum.github.io/Krakow-Wybory-Prezydenckie-Druga-Tura-11-Pazdziernika/" }
+        ]
+      }
+    ]
+  },
+
   /* CV timeline — newest first. gold: true = highlighted. next: true = locked "next quest". */
   journey: [
     {
@@ -182,6 +255,7 @@ window.SITE = {
   /* Interface text in each language. */
   i18n: {
     en: {
+      "collab.kicker": "In collaboration with", "collab.text": "Tools I designed and built for the think tank I co-founded — used to explain budgets, elections and diplomacy.", "collab.all": "All projects",
       "cv.open": "Open my full CV", "cv.close": "Close the CV", "cv.hint": "Experience · activities · languages · certificates", "toast.loot": "Loot found — the full CV", "about.follow": "Follow me",
       "work.site": "Website",
       "cv.experience": "Experience", "cv.activities": "Activities", "cv.skills": "Skills",
@@ -210,8 +284,8 @@ window.SITE = {
       "journey.title": "Experience & education",
       "journey.locked": "Locked",
       "contact.kicker": "05 / Contact",
-      "contact.title": "Let’s build something.",
-      "contact.text": "Projects, collaborations, or a good conversation about tech and power — my inbox is open.",
+      "contact.title": "My inbox is open.",
+      "contact.text": "Whether it’s a project, a collaboration, an interview or just a hello — I’m always happy to hear from people. Reach out and I’ll get back to you.",
       "contact.email": "Email me",
       "contact.copied": "Email copied",
       "footer.made": "Built in Kraków, Poland.",
@@ -223,6 +297,7 @@ window.SITE = {
       "toast.explorer": "Explorer — you reached the end"
     },
     pl: {
+      "collab.kicker": "We współpracy z", "collab.text": "Narzędzia, które zaprojektowałem i zbudowałem dla współzałożonego przeze mnie think tanku — o budżecie, wyborach i dyplomacji.", "collab.all": "Wszystkie projekty",
       "cv.open": "Otwórz pełne CV", "cv.close": "Zamknij CV", "cv.hint": "Doświadczenie · aktywności · języki · certyfikaty", "toast.loot": "Znaleziono łup — pełne CV", "about.follow": "Obserwuj mnie",
       "work.site": "Strona",
       "cv.experience": "Doświadczenie", "cv.activities": "Aktywności", "cv.skills": "Umiejętności",
@@ -251,8 +326,8 @@ window.SITE = {
       "journey.title": "Doświadczenie i edukacja",
       "journey.locked": "Zablokowane",
       "contact.kicker": "05 / Kontakt",
-      "contact.title": "Zbudujmy coś razem.",
-      "contact.text": "Projekty, współpraca albo dobra rozmowa o technologii i władzy — śmiało pisz.",
+      "contact.title": "Moja skrzynka jest otwarta.",
+      "contact.text": "Projekt, współpraca, wywiad czy zwykłe „cześć” — zawsze chętnie poznaję nowych ludzi. Napisz do mnie, a odpowiem.",
       "contact.email": "Napisz maila",
       "contact.copied": "Skopiowano adres",
       "footer.made": "Zbudowane w Krakowie.",
@@ -264,6 +339,7 @@ window.SITE = {
       "toast.explorer": "Odkrywca — dotarłeś do końca"
     },
     fr: {
+      "collab.kicker": "En collaboration avec", "collab.text": "Des outils que j’ai conçus et construits pour le think tank que j’ai cofondé — pour expliquer budgets, élections et diplomatie.", "collab.all": "Tous les projets",
       "cv.open": "Ouvrir mon CV complet", "cv.close": "Fermer le CV", "cv.hint": "Expérience · activités · langues · certificats", "toast.loot": "Butin trouvé — le CV complet", "about.follow": "Me suivre",
       "work.site": "Site web",
       "cv.experience": "Expérience", "cv.activities": "Activités", "cv.skills": "Compétences",
@@ -292,8 +368,8 @@ window.SITE = {
       "journey.title": "Expérience et formation",
       "journey.locked": "Verrouillé",
       "contact.kicker": "05 / Contact",
-      "contact.title": "Construisons quelque chose.",
-      "contact.text": "Projets, collaborations ou une bonne discussion sur la tech et le pouvoir — écrivez-moi.",
+      "contact.title": "Ma boîte mail est ouverte.",
+      "contact.text": "Un projet, une collaboration, une interview ou juste un bonjour — je suis toujours ravi d’échanger. Écrivez-moi, je vous répondrai.",
       "contact.email": "M’écrire",
       "contact.copied": "Adresse copiée",
       "footer.made": "Conçu à Cracovie, Pologne.",
