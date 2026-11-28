@@ -64,15 +64,26 @@
 
   /* ---------- rendering ---------- */
   function renderProjects() {
+    var arrow = '<svg class="arr" viewBox="0 0 8 8" aria-hidden="true"><path d="M2 1h5v5H6V3H5v1H4v1H3v1H2V5h1V4h1V3h1V2H2z"/></svg>';
     $('#projects').innerHTML = S.projects.map(function (p, i) {
-      var links = (p.links || []).map(function (l) {
-        return '<a class="link-arrow" href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.label) + ' ↗</a>';
+      var links = p.links || [];
+      var primary = links.filter(function (l) { return l.label === 'App Store'; })[0] || links[0];
+      var label = function (l) { return /^[\w-]+\.[a-z]{2,}$/i.test(l.label) ? T('work.site') : l.label; };
+      var ordered = primary ? [primary].concat(links.filter(function (l) { return l !== primary; })) : [];
+      var btns = ordered.map(function (l, k) {
+        return '<a class="pbtn notch' + (k === 0 ? ' main' : '') + '" href="' + esc(l.url) + '" target="_blank" rel="noopener">' +
+          '<span>' + esc(label(l)) + '</span>' + arrow + '</a>';
       }).join('');
-      return '<article class="project panel notch reveal" style="--i:' + i + '">' +
-        '<div class="project-top">' + (p.image ? '<img class="app-icon" src="' + esc(p.image) + '" alt="" width="64" height="64" loading="lazy">' : '<span class="tile notch">' + PixelIcon(p.icon) + '</span>') + '</div>' +
-        '<h3>' + esc(p.name) + '</h3>' +
-        (p.badge ? '<span class="win notch">' + PixelIcon('trophy') + '<span>' + esc(T('work.winner')) + '</span></span>' : '') + '<p>' + esc(p.desc[lang] || p.desc.en) + '</p>' +
-        '<div class="project-links">' + links + '</div></article>';
+      var icon = p.image ? '<img class="app-icon" src="' + esc(p.image) + '" alt="" width="96" height="96" loading="lazy">' : '<span class="tile notch">' + PixelIcon(p.icon) + '</span>';
+      var kind = p.kind ? (p.kind[lang] || p.kind.en) : '';
+      return '<article class="project notch reveal' + (p.featured ? ' featured' : '') + '" style="--i:' + i + ';--acc:' + esc(p.accent || '#7fa6ff') + '">' +
+        '<div class="stage"><span class="glow"></span>' + icon + (kind ? '<span class="kind px">' + esc(kind) + '</span>' : '') + '</div>' +
+        '<div class="pbody">' +
+          (p.badge ? '<span class="win notch">' + PixelIcon('trophy') + '<span>' + esc(T('work.winner')) + '</span></span>' : '') +
+          '<h3>' + esc(p.name) + '</h3>' +
+          '<p>' + esc(p.desc[lang] || p.desc.en) + '</p>' +
+          '<div class="pactions">' + btns + '</div>' +
+        '</div></article>';
     }).join('');
   }
 

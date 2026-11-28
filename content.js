@@ -20,13 +20,17 @@ window.SITE = {
     { label: "TikTok",      url: "https://www.tiktok.com/@markockidev" }
   ],
 
-  /* Projects. image: app icon in assets/projects/. badge: optional gold label.
+  /* Projects. image: app icon in assets/projects/. accent: card colour. kind: short label.
+     badge: gold "winner" label. featured: wide card.
      links: any number of { label, url }. */
   projects: [
     {
       name: "SafePoland",
+      accent: "#3f9a54",
+      kind: { en: "Emergency guide", pl: "Przewodnik kryzysowy", fr: "Guide d’urgence" },
       image: "assets/projects/safepoland.png",
       badge: true,                      // shows "Swift Student Challenge winner"
+      featured: true,                   // big card
       desc: {
         en: "A guide to preparing for emergencies in Poland: emergency numbers and safety checklists in five languages. Works offline and collects no data.",
         pl: "Przewodnik, jak przygotować się na sytuacje kryzysowe w Polsce: numery alarmowe i listy kontrolne w pięciu językach. Działa offline i nie zbiera danych.",
@@ -36,6 +40,8 @@ window.SITE = {
     },
     {
       name: "Easel",
+      accent: "#c79a55",
+      kind: { en: "Focus timer", pl: "Minutnik skupienia", fr: "Minuteur" },
       image: "assets/projects/easel.png",
       desc: {
         en: "A focus timer that slowly reveals a famous painting while you work. Stay focused, and the masterpiece is yours.",
@@ -49,6 +55,8 @@ window.SITE = {
     },
     {
       name: "BookWorm",
+      accent: "#5fa55a",
+      kind: { en: "Reading tracker", pl: "Dziennik czytania", fr: "Suivi de lecture" },
       image: "assets/projects/bookworm.png",
       desc: {
         en: "A calm reading tracker for paper books, ebooks and audiobooks. Log a page in a second and keep your streak going.",
@@ -62,6 +70,8 @@ window.SITE = {
     },
     {
       name: "TimeBox",
+      accent: "#8d9bff",
+      kind: { en: "Day planner", pl: "Planer dnia", fr: "Planificateur" },
       image: "assets/projects/timebox.png",
       desc: {
         en: "A minimalist time-blocking planner. Three top priorities a day, so you work on what actually matters.",
@@ -72,6 +82,8 @@ window.SITE = {
     },
     {
       name: "Warashi",
+      accent: "#e0855a",
+      kind: { en: "Mac utility", pl: "Narzędzie na Maca", fr: "Utilitaire Mac" },
       image: "assets/projects/warashi.png",
       desc: {
         en: "A flight recorder for your Mac. A quiet menu bar app that remembers what your Mac did, every five seconds, for a year.",
@@ -79,8 +91,8 @@ window.SITE = {
         fr: "Une boîte noire pour votre Mac. Une app discrète dans la barre des menus qui retient ce que fait votre Mac, toutes les cinq secondes, pendant un an."
       },
       links: [
-        { label: "warashi.app", url: "https://warashi.app/" },
-        { label: "Free beta (Mac)", url: "https://github.com/MarkockiAdam/warashi-releases/releases/latest/download/Warashi.dmg" }
+        { label: "Free beta (Mac)", url: "https://github.com/MarkockiAdam/warashi-releases/releases/latest/download/Warashi.dmg" },
+        { label: "warashi.app", url: "https://warashi.app/" }
       ]
     }
   ],
@@ -171,6 +183,7 @@ window.SITE = {
   /* Interface text in each language. */
   i18n: {
     en: {
+      "work.site": "Website",
       "cv.experience": "Experience", "cv.activities": "Activities", "cv.skills": "Skills",
       "cv.certificates": "Certificates", "cv.languages": "Languages", "work.winner": "Swift Student Challenge Winner",
       "meta.title": "Adam Markocki — Builder of apps. Student of power.",
@@ -212,6 +225,7 @@ window.SITE = {
       "toast.explorer": "Explorer — you reached the end"
     },
     pl: {
+      "work.site": "Strona",
       "cv.experience": "Doświadczenie", "cv.activities": "Aktywności", "cv.skills": "Umiejętności",
       "cv.certificates": "Certyfikaty", "cv.languages": "Języki", "work.winner": "Zwycięzca Swift Student Challenge",
       "meta.title": "Adam Markocki — Buduję aplikacje. Badam władzę.",
@@ -253,6 +267,7 @@ window.SITE = {
       "toast.explorer": "Odkrywca — dotarłeś do końca"
     },
     fr: {
+      "work.site": "Site web",
       "cv.experience": "Expérience", "cv.activities": "Activités", "cv.skills": "Compétences",
       "cv.certificates": "Certificats", "cv.languages": "Langues", "work.winner": "Lauréat Swift Student Challenge",
       "meta.title": "Adam Markocki — Je crée des apps. J’étudie le pouvoir.",
