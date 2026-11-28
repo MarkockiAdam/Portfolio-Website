@@ -109,8 +109,9 @@
         return '<li><span><strong>' + esc(L(r.title)) + '</strong> · ' + esc(r.place) + '</span>' + (r.years ? '<span class="years">' + esc(r.years) + '</span>' : '') + '</li>';
       }).join('') + '</ul>';
     };
+    var k = 0;
     var card = function (key, body, wide) {
-      return '<section class="cv-card panel notch reveal' + (wide ? ' wide' : '') + '"><h3 class="px">' + esc(T(key)) + '</h3>' + body + '</section>';
+      return '<section class="cv-card panel notch' + (wide ? ' wide' : '') + '" style="--k:' + (k++) + '"><h3 class="px">' + esc(T(key)) + '</h3>' + body + '</section>';
     };
     $('#cv').innerHTML =
       card('cv.experience', rows(cv.experience), true) +
@@ -124,7 +125,10 @@
   }
 
   function renderStatic() {
-    $('#heroes').innerHTML = S.heroes.map(function (h) { return '<li class="chip notch">' + esc(h) + '</li>'; }).join('');
+    var soc = { 'X / Twitter': ['x', 'X'], 'LinkedIn': ['linkedin', 'LinkedIn'], 'Instagram': ['instagram', 'Instagram'] };
+    $('#about-socials').innerHTML = S.socials.filter(function (s) { return soc[s.label]; }).map(function (s) {
+      return '<li><a class="sbtn notch" href="' + esc(s.url) + '" target="_blank" rel="noopener">' + PixelIcon(soc[s.label][0]) + '<span>' + esc(soc[s.label][1]) + '</span></a></li>';
+    }).join('');
     $('#socials').innerHTML = S.socials.map(function (s) {
       return '<li><a class="link-arrow" href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.label) + ' ↗</a></li>';
     }).join('');
@@ -141,6 +145,7 @@
     $$('.lang button').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.lang === lang); });
     document.title = T('meta.title');
     renderProjects(); renderJourney(); renderCV(); updateHeatTotal();
+    syncChest();
     paintIcons(); observeReveals();
   }
   $$('.lang button').forEach(function (b) {
@@ -172,13 +177,21 @@
     }, { threshold: 0.3 }).observe(heat);
     var sc = $('.heat-scroll'); sc.scrollLeft = sc.scrollWidth;
   }
+  /* data/contributions.json is refreshed every day by a GitHub Action (.github/workflows/contributions.yml).
+     It renders instantly; the live API then replaces it if it answers. */
+  var heatShown = false;
+  fetch('data/contributions.json', { cache: 'no-cache' })
+    .then(function (r) { if (!r.ok) throw r; return r.json(); })
+    .then(function (j) { if (heatShown) return; heatShown = true; heatTotal = j.total; renderHeat(j.contributions); updateHeatTotal(); })
+    .catch(function () {});
   fetch('https://github-contributions-api.jogruber.de/v4/' + encodeURIComponent(S.github) + '?y=last')
     .then(function (r) { if (!r.ok) throw r; return r.json(); })
     .then(function (j) {
       heatTotal = (j.total && (j.total.lastYear != null ? j.total.lastYear : 0)) || 0;
-      renderHeat(j.contributions); updateHeatTotal();
+      heatShown = true; renderHeat(j.contributions); updateHeatTotal();
     })
     .catch(function () {
+      if (heatShown) return;
       heatTotal = -1; updateHeatTotal();
       var fake = [], d = new Date(); d.setDate(d.getDate() - 364);
       for (var i = 0; i < 365; i++) { fake.push({ date: d.toISOString().slice(0, 10), count: 0, level: 0 }); d.setDate(d.getDate() + 1); }
@@ -210,6 +223,53 @@
     if (navigator.clipboard) navigator.clipboard.writeText(S.email).then(function () { toast(T('contact.copied'), S.email, 'mail'); }, function () {});
     setTimeout(go, 300);
   });
+
+  /* ---------- the CV chest ---------- */
+  var chest = $('#chest'), drawer = $('#cv-drawer'), chestOpen = false;
+  function syncChest() {
+    if (!chest) return;
+    $('.chest-title', chest).textContent = T(chestOpen ? 'cv.close' : 'cv.open');
+    chest.setAttribute('aria-expanded', chestOpen);
+  }
+  function burst() {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var loot = $('#loot'), colors = ['#f7c948', '#ffffff', '#7fd8ff', '#5fbf45', '#ffe27a', '#ef5a5a'];
+    for (var i = 0; i < 22; i++) {
+      var p = document.createElement('i');
+      var ang = (-90 + (Math.random() * 150 - 75)) * Math.PI / 180, dist = 50 + Math.random() * 90;
+      p.style.setProperty('--dx', Math.round(Math.cos(ang) * dist) + 'px');
+      p.style.setProperty('--dy', Math.round(Math.sin(ang) * dist) + 'px');
+      p.style.setProperty('--s', (4 + Math.floor(Math.random() * 3) * 2) + 'px');
+      p.style.background = colors[i % colors.length];
+      p.style.animationDelay = Math.round(Math.random() * 120) + 'ms';
+      loot.appendChild(p);
+      setTimeout(function (el) { el.remove(); }.bind(null, p), 1200);
+    }
+  }
+  function toggleChest(force) {
+    chestOpen = typeof force === 'boolean' ? force : !chestOpen;
+    chest.classList.toggle('open', chestOpen);
+    drawer.classList.toggle('open', chestOpen);
+    drawer.inert = !chestOpen;
+    syncChest();
+    if (chestOpen) {
+      burst(); blip([392, 523, 659, 784]);
+      if (once('loot')) setTimeout(function () { toast(T('toast.title'), T('toast.loot'), 'star'); }, 500);
+      setTimeout(function () {
+        var r = chest.getBoundingClientRect();
+        if (r.top > innerHeight * 0.45) scrollBy({ top: r.top - 120, behavior: 'smooth' });
+      }, 250);
+    } else { blip([523, 392]); }
+  }
+  chest.addEventListener('click', function () { toggleChest(); });
+  addEventListener('keydown', function (e) {
+    if (e.metaKey || e.ctrlKey || e.altKey || /input|textarea|select/i.test(e.target.tagName)) return;
+    if (e.key === 'e' || e.key === 'E') {
+      var r = $('#journey').getBoundingClientRect();
+      if (r.top < innerHeight && r.bottom > 0) { e.preventDefault(); toggleChest(); }
+    }
+  });
+  if (location.hash === '#cv') toggleChest(true);
 
   /* ---------- boot ---------- */
   renderStatic();

@@ -3,7 +3,7 @@
   var P = {
     Y: '#f7c948', y: '#d9a21b', W: '#ffffff', w: '#dbe6ff', B: '#3d6fe0', b: '#2a4fb0',
     G: '#5fbf45', g: '#3e8f2c', D: '#9a6a3a', d: '#6f4a26', R: '#ef5a5a', r: '#b73a3a',
-    S: '#d5def0', K: '#24324f', C: '#7fd8ff'
+    S: '#d5def0', K: '#24324f', C: '#7fd8ff', L: '#0a66c2', P: '#e1306c', O: '#f9a03f'
   };
   var M = {
     trophy: ['Y.YYYY.Y', 'Y.YWYY.Y', '.YYWYYY.', '..YYYy..', '...Yy...', '...Yy...', '..DDDD..', '.DDDDDD.'],
@@ -18,6 +18,9 @@
     pick:   ['...SSSS.', '......SS', '.....DSS', '....D..S', '...D...S', '..D.....', '.D......', 'D.......'],
     grid:   ['G.g.G.C.', '........', 'g.G.C.G.', '........', 'G.C.g.G.', '........', 'C.G.G.g.', '........'],
     mail:   ['........', 'WWWWWWWW', 'WbWWWWbW', 'WWbWWbWW', 'WWWbbWWW', 'WWWWWWWW', 'WWWWWWWW', '........'],
+    x:      ['W......W', '.W....W.', '..W..W..', '...WW...', '...WW...', '..W..W..', '.W....W.', 'W......W'],
+    linkedin: ['LLLLLLLL', 'LWLLLLLL', 'LLLLLLLL', 'LWLWWWLL', 'LWLWLLWL', 'LWLWLLWL', 'LWLWLLWL', 'LLLLLLLL'],
+    instagram: ['.PPPPPP.', 'P.....OP', 'P.OOOO.P', 'P.O..O.P', 'P.O..O.P', 'P.OOOO.P', 'P......P', '.PPPPPP.'],
     lock:   ['..SSSS..', '.S....S.', '.S....S.', 'SSSSSSSS', 'SSSKKSSS', 'SSSKKSSS', 'SSSSSSSS', '........']
   };
   function svg(name) {

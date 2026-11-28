@@ -105,9 +105,8 @@
           <p class="kicker px" data-i18n="about.kicker">03 / About</p>
           <h2 data-i18n="about.title">Between politics and tech</h2>
           <p data-i18n="about.p1"></p>
-          <p data-i18n="about.p2"></p>
-          <p class="heroes-label px" data-i18n="about.heroes">People I learn from</p>
-          <ul class="chips" id="heroes"></ul>
+          <p class="heroes-label px" data-i18n="about.follow">Follow me</p>
+          <ul class="about-socials" id="about-socials"></ul>
         </div>
       </div>
     </section>
@@ -118,7 +117,33 @@
         <h2 data-i18n="journey.title">Experience &amp; education</h2>
       </header>
       <ol class="quests" id="quests"></ol>
-      <div class="cv-grid" id="cv"></div>
+      <button type="button" class="chest panel notch reveal" id="chest" aria-expanded="false" aria-controls="cv-drawer">
+        <span class="chest-art">
+          <svg class="chest-svg" viewBox="0 0 20 18" shape-rendering="crispEdges" aria-hidden="true">
+            <g class="chest-glow"><rect x="3" y="6" width="14" height="2" fill="#fff3b0"/><rect x="5" y="4" width="10" height="2" fill="#ffe27a" opacity=".7"/><rect x="7" y="2" width="6" height="2" fill="#ffe27a" opacity=".4"/></g>
+            <g class="chest-base">
+              <rect x="2" y="9" width="16" height="8" fill="#8a5a2b"/><rect x="2" y="9" width="16" height="1" fill="#5e3b1a"/>
+              <rect x="3" y="11" width="14" height="1" fill="#a8743d"/><rect x="3" y="14" width="14" height="1" fill="#a8743d"/>
+              <rect x="2" y="9" width="1" height="8" fill="#4a2e14"/><rect x="17" y="9" width="1" height="8" fill="#4a2e14"/><rect x="2" y="16" width="16" height="1" fill="#4a2e14"/>
+              <rect x="9" y="9" width="2" height="3" fill="#f7c948"/><rect x="9" y="11" width="2" height="1" fill="#c9971c"/>
+            </g>
+            <g class="chest-lid">
+              <rect x="2" y="4" width="16" height="5" fill="#9a6532"/><rect x="2" y="4" width="16" height="1" fill="#b87d44"/>
+              <rect x="2" y="4" width="1" height="5" fill="#4a2e14"/><rect x="17" y="4" width="1" height="5" fill="#4a2e14"/><rect x="2" y="3" width="16" height="1" fill="#4a2e14"/>
+              <rect x="3" y="7" width="14" height="1" fill="#7a4d22"/><rect x="9" y="7" width="2" height="2" fill="#f7c948"/>
+            </g>
+          </svg>
+          <span class="loot" id="loot" aria-hidden="true"></span>
+        </span>
+        <span class="chest-text">
+          <strong class="chest-title" data-i18n="cv.open">Open my full CV</strong>
+          <span class="chest-hint" data-i18n="cv.hint">Experience · activities · languages · certificates</span>
+        </span>
+        <span class="chest-key px" aria-hidden="true">E</span>
+      </button>
+      <div class="cv-drawer" id="cv-drawer" inert>
+        <div class="cv-drawer-inner"><div class="cv-grid" id="cv"></div></div>
+      </div>
     </section>
 
     <section class="section contact" id="contact" data-section="5">

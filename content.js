@@ -137,12 +137,12 @@ window.SITE = {
       }
     },
     {
-      icon: "book", when: { en: "2020 — 2024", pl: "2020 — 2024", fr: "2020 — 2024" },
-      title: { en: "High school, Matura 2024", pl: "Liceum, matura 2024", fr: "Lycée, baccalauréat polonais 2024" },
+      icon: "book", when: { en: "2020 — 2024 · High school", pl: "2020 — 2024 · Liceum", fr: "2020 — 2024 · Lycée" },
+      title: { en: "Catholic Montessori High School", pl: "Katolickie Liceum Montessori", fr: "Lycée catholique Montessori" },
       text: {
-        en: "Catholic Montessori High School of the Righteous Among the Nations, Kraków.",
-        pl: "Katolickie Liceum Montessori im. Sprawiedliwych wśród Narodów Świata w Krakowie.",   // TODO: check official Polish name
-        fr: "Lycée catholique Montessori des Justes parmi les Nations, Cracovie."
+        en: "Full name: Catholic Montessori High School of the Righteous Among the Nations, Kraków. Graduated with the Matura in 2024.",
+        pl: "Katolickie Liceum Montessori im. Sprawiedliwych wśród Narodów Świata w Krakowie. Matura 2024.",   // TODO: check official Polish name
+        fr: "Lycée catholique Montessori des Justes parmi les Nations, Cracovie. Baccalauréat polonais (Matura) en 2024."
       }
     }
   ],
@@ -178,11 +178,11 @@ window.SITE = {
     ]
   },
 
-  heroes: ["Napoleon", "Steve Jobs", "James Dyson"],
 
   /* Interface text in each language. */
   i18n: {
     en: {
+      "cv.open": "Open my full CV", "cv.close": "Close the CV", "cv.hint": "Experience · activities · languages · certificates", "toast.loot": "Loot found — the full CV", "about.follow": "Follow me",
       "work.site": "Website",
       "cv.experience": "Experience", "cv.activities": "Activities", "cv.skills": "Skills",
       "cv.certificates": "Certificates", "cv.languages": "Languages", "work.winner": "Swift Student Challenge Winner",
@@ -205,9 +205,7 @@ window.SITE = {
       "code.open": "Open GitHub",
       "about.kicker": "03 / About",
       "about.title": "Between politics and tech",
-      "about.p1": "Proudly Polish 🇵🇱. I study international relations, and when I get sick of politics, I go to tech. When I feel too stupid for tech, I go back to politics.",
-      "about.p2": "I’m fascinated by power: who wins it, how they keep it, and what they build with it. That’s why I co-founded Terra Cracovianum, and why I ship my own apps.",
-      "about.heroes": "People I learn from",
+      "about.p1": "Proudly Polish 🇵🇱<br>I study international relations, and when I get sick of politics, I go to tech. When I feel too stupid for tech, I go back to politics.",
       "journey.kicker": "04 / CV",
       "journey.title": "Experience & education",
       "journey.locked": "Locked",
@@ -225,6 +223,7 @@ window.SITE = {
       "toast.explorer": "Explorer — you reached the end"
     },
     pl: {
+      "cv.open": "Otwórz pełne CV", "cv.close": "Zamknij CV", "cv.hint": "Doświadczenie · aktywności · języki · certyfikaty", "toast.loot": "Znaleziono łup — pełne CV", "about.follow": "Obserwuj mnie",
       "work.site": "Strona",
       "cv.experience": "Doświadczenie", "cv.activities": "Aktywności", "cv.skills": "Umiejętności",
       "cv.certificates": "Certyfikaty", "cv.languages": "Języki", "work.winner": "Zwycięzca Swift Student Challenge",
@@ -247,9 +246,7 @@ window.SITE = {
       "code.open": "Otwórz GitHub",
       "about.kicker": "03 / O mnie",
       "about.title": "Między polityką a technologią",
-      "about.p1": "Dumny Polak 🇵🇱. Studiuję stosunki międzynarodowe, a kiedy mam dość polityki, idę w technologię. Kiedy czuję się za głupi na technologię, wracam do polityki.",
-      "about.p2": "Fascynuje mnie władza: kto ją zdobywa, jak ją utrzymuje i co z nią buduje. Dlatego współzałożyłem Terra Cracovianum i dlatego wydaję własne aplikacje.",
-      "about.heroes": "Od kogo się uczę",
+      "about.p1": "Dumny Polak 🇵🇱<br>Studiuję stosunki międzynarodowe, a kiedy mam dość polityki, idę w technologię. Kiedy czuję się za głupi na technologię, wracam do polityki.",
       "journey.kicker": "04 / CV",
       "journey.title": "Doświadczenie i edukacja",
       "journey.locked": "Zablokowane",
@@ -267,6 +264,7 @@ window.SITE = {
       "toast.explorer": "Odkrywca — dotarłeś do końca"
     },
     fr: {
+      "cv.open": "Ouvrir mon CV complet", "cv.close": "Fermer le CV", "cv.hint": "Expérience · activités · langues · certificats", "toast.loot": "Butin trouvé — le CV complet", "about.follow": "Me suivre",
       "work.site": "Site web",
       "cv.experience": "Expérience", "cv.activities": "Activités", "cv.skills": "Compétences",
       "cv.certificates": "Certificats", "cv.languages": "Langues", "work.winner": "Lauréat Swift Student Challenge",
@@ -289,9 +287,7 @@ window.SITE = {
       "code.open": "Ouvrir GitHub",
       "about.kicker": "03 / À propos",
       "about.title": "Entre politique et tech",
-      "about.p1": "Fièrement polonais 🇵🇱. J’étudie les relations internationales, et quand j’en ai assez de la politique, je passe à la tech. Quand je me sens trop bête pour la tech, je reviens à la politique.",
-      "about.p2": "Le pouvoir me fascine : qui le conquiert, comment on le garde, et ce qu’on en fait. C’est pour ça que j’ai cofondé Terra Cracovianum, et que je publie mes propres apps.",
-      "about.heroes": "Ceux qui m’inspirent",
+      "about.p1": "Fièrement polonais 🇵🇱<br>J’étudie les relations internationales, et quand j’en ai assez de la politique, je passe à la tech. Quand je me sens trop bête pour la tech, je reviens à la politique.",
       "journey.kicker": "04 / CV",
       "journey.title": "Expérience et formation",
       "journey.locked": "Verrouillé",

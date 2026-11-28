@@ -1,0 +1,39 @@
+name: Update GitHub heatmap
+
+on:
+  schedule:
+    - cron: "17 3 * * *"    # every day, 03:17 UTC
+    - cron: "43 15 * * *"   # and again at 15:43 UTC, in case one run fails
+  workflow_dispatch:         # "Run workflow" button in the Actions tab
+  push:
+    branches: [main]
+    paths: [scripts/update-contributions.mjs, .github/workflows/contributions.yml]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: heatmap
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Fetch contributions
+        run: node scripts/update-contributions.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/contributions.json
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "Update GitHub heatmap data"
+          git pull --rebase
+          git push

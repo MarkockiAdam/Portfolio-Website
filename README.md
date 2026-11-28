@@ -39,6 +39,14 @@ Then open http://localhost:8000.
 
 DNS can take up to 24 h. Until it's set up, the github.io address redirects to the domain, so the site won't load before DNS works.
 
+## GitHub heatmap (updates itself)
+
+`.github/workflows/contributions.yml` runs twice a day. It saves your contributions to
+`data/contributions.json` and commits it, so the heatmap is always fresh even if the live
+API is down. The page shows the saved data instantly, then swaps in live data if available.
+Run it by hand any time: **Actions → Update GitHub heatmap → Run workflow**.
+(Scheduled runs start once this is merged into `main`.)
+
 ## What's inside
 
 | File | What it does |
@@ -49,6 +57,8 @@ DNS can take up to 24 h. Until it's set up, the github.io address redirects to t
 | `js/sky.js` | The animated pixel sky (WebGL) |
 | `js/meadow.js` | Pixel grass at the bottom |
 | `js/icons.js` | Pixel icons |
-| `js/main.js` | Languages, heatmap, hotbar, achievements, sound |
+| `js/main.js` | Languages, heatmap, hotbar, achievements, sound, CV chest |
+| `data/contributions.json` | Heatmap data, refreshed daily by the workflow |
+| `scripts/update-contributions.mjs` | The script the workflow runs |
 
 Keyboard: press **1–6** to jump between sections, like a hotbar.
