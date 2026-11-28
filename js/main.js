@@ -12,6 +12,7 @@
   };
   var lang = S.i18n[doc.lang] ? doc.lang : 'en';
   var T = function (k) { return (S.i18n[lang] && S.i18n[lang][k]) || S.i18n.en[k] || ''; };
+  var App = window.App = { S: S, T: T, lang: function () { return lang; }, heat: { total: null, days: null } };
   var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
 
   /* ---------- sound (off by default, synthesized — no files) ---------- */
@@ -22,9 +23,9 @@
       actx = actx || new (window.AudioContext || window.webkitAudioContext)();
       notes.forEach(function (f, i) {
         var o = actx.createOscillator(), g = actx.createGain(), at = actx.currentTime + i * 0.09;
-        o.type = 'square'; o.frequency.value = f;
+        o.type = doc.dataset.skin === 'atlas' ? 'sine' : 'square'; o.frequency.value = f;
         g.gain.setValueAtTime(0.0001, at);
-        g.gain.exponentialRampToValueAtTime(0.06, at + 0.01);
+        g.gain.exponentialRampToValueAtTime(doc.dataset.skin === 'atlas' ? 0.035 : 0.06, at + 0.01);
         g.gain.exponentialRampToValueAtTime(0.0001, at + 0.12);
         o.connect(g).connect(actx.destination); o.start(at); o.stop(at + 0.14);
       });
@@ -52,6 +53,7 @@
 
   /* ---------- toasts ---------- */
   function toast(title, text, icon) {
+    if (doc.dataset.skin === 'atlas' && window.Atlas && Atlas.toast) return Atlas.toast(title, text, icon);
     var el = document.createElement('div');
     el.className = 'toast notch';
     el.innerHTML = '<span class="toast-icon">' + PixelIcon(icon || 'trophy') + '</span>' +
@@ -168,6 +170,7 @@
     renderProjects(); renderCollab(); renderJourney(); renderCV(); updateHeatTotal();
     syncChest();
     paintIcons(); observeReveals();
+    if (window.Atlas) Atlas.render();
   }
   $$('.lang button').forEach(function (b) {
     b.addEventListener('click', function () { store.set('lang', b.dataset.lang); applyLang(b.dataset.lang); blip([520]); });
@@ -182,10 +185,12 @@
   /* ---------- GitHub heatmap ---------- */
   var heatTotal = null;
   function updateHeatTotal() {
+    App.heat.total = heatTotal; if (window.Atlas) Atlas.onHeat();
     if (heatTotal === null) return;
     $('#heat-total').textContent = heatTotal < 0 ? T('code.error') : T('code.total').replace('{n}', heatTotal.toLocaleString(lang));
   }
   function renderHeat(days) {
+    App.heat.days = days; if (window.Atlas) Atlas.onHeat();
     var first = new Date(days[0].date + 'T00:00:00').getDay(), html = '';
     for (var i = 0; i < first; i++) html += '<i class="pad"></i>';
     days.forEach(function (d, k) {
@@ -232,7 +237,7 @@
   sections.forEach(function (s) { navIO.observe(s); });
   slots.forEach(function (s) { s.addEventListener('click', function () { blip([600]); }); });
   addEventListener('keydown', function (e) {
-    if (e.metaKey || e.ctrlKey || e.altKey || /input|textarea|select/i.test(e.target.tagName)) return;
+    if (doc.dataset.skin === 'atlas' || doc.dataset.picker || e.metaKey || e.ctrlKey || e.altKey || /input|textarea|select/i.test(e.target.tagName)) return;
     var n = parseInt(e.key, 10);
     if (n >= 1 && n <= slots.length) { e.preventDefault(); slots[n - 1].click(); }
   });
@@ -284,7 +289,7 @@
   }
   chest.addEventListener('click', function () { toggleChest(); });
   addEventListener('keydown', function (e) {
-    if (e.metaKey || e.ctrlKey || e.altKey || /input|textarea|select/i.test(e.target.tagName)) return;
+    if (doc.dataset.skin === 'atlas' || doc.dataset.picker || e.metaKey || e.ctrlKey || e.altKey || /input|textarea|select/i.test(e.target.tagName)) return;
     if (e.key === 'e' || e.key === 'E') {
       var r = $('#journey').getBoundingClientRect();
       if (r.top < innerHeight && r.bottom > 0) { e.preventDefault(); toggleChest(); }
@@ -292,10 +297,129 @@
   });
   if (location.hash === '#cv') toggleChest(true);
 
+  /* ---------- styles: PIXEL / ATLAS ---------- */
+  var reduceMQ = matchMedia('(prefers-reduced-motion: reduce)');
+  function syncSkinButtons() {
+    $$('[data-skin-set]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.skinSet === doc.dataset.skin); });
+  }
+  function applySkin(k) {
+    doc.dataset.skin = k;
+    $('#atlas').hidden = k !== 'atlas';
+    if (k === 'atlas') {
+      if (window.Sky && Sky.pause) Sky.pause();
+      if (window.Meadow && Meadow.pause) Meadow.pause();
+      if (window.Atlas) Atlas.show();
+    } else {
+      if (window.Atlas) Atlas.hide();
+      if (window.Sky && Sky.resume) Sky.resume();
+      if (window.Meadow && Meadow.resume) Meadow.resume();
+    }
+    var m = $('meta[name="theme-color"]');
+    if (m) m.content = k === 'atlas' ? '#0a0e13' : (doc.dataset.theme === 'night' ? '#0e1940' : '#3d6fe0');
+    syncSkinButtons();
+  }
+  function rememberSkin(k) {
+    store.set('skin', k);
+    if (/[?&]skin=/.test(location.search)) {
+      var q = location.search.replace(/([?&]skin=)(pixel|atlas)/, '$1' + k);
+      history.replaceState(null, '', location.pathname + q + location.hash);
+    }
+  }
+  function bootThen(done) {
+    var box = $('#boot'), lines = [
+      'ATLAS · secure session',
+      '> resolving subject … MARKOCKI, ADAM',
+      '> sources: github · app store · terracracovianum.org',
+      '> building link graph … ' + (S.projects.length + (S.collab ? S.collab.items.length : 0) + 6) + ' nodes',
+      '> ACCESS GRANTED'
+    ];
+    var step = 150, end = 110 + lines.length * step;
+    box.innerHTML = ''; box.classList.add('on');
+    lines.forEach(function (t, i) {
+      setTimeout(function () {
+        var p = document.createElement('p'); p.textContent = t;
+        if (i === lines.length - 1) p.className = 'ok';
+        box.appendChild(p); blip([880 + i * 60]);
+      }, 110 + i * step);
+    });
+    setTimeout(function () { done(); box.classList.add('out'); }, end + 180);
+    setTimeout(function () { box.classList.remove('on', 'out'); box.innerHTML = ''; }, end + 700);
+  }
+  function dissolveThen(done) {
+    var cv = $('#dissolve'), ctx = cv.getContext('2d'), C = 28;
+    var w = Math.ceil(innerWidth / C), h = Math.ceil(innerHeight / C), cells = [];
+    cv.width = w; cv.height = h; cv.classList.add('on');
+    for (var i = 0; i < w * h; i++) cells.push(i);
+    for (var j = cells.length - 1; j > 0; j--) { var r = Math.floor(Math.random() * (j + 1)), t = cells[j]; cells[j] = cells[r]; cells[r] = t; }
+    var tones = ['#3d6fe0', '#6290ec', '#2855cc', '#a2c1f6'];
+    var start = performance.now(), D = 340, phase = 0;
+    (function frame(now) {
+      var k = Math.min(1, (now - start) / D), n = Math.floor(k * cells.length);
+      if (phase === 0) {
+        for (var a = 0; a < n; a++) { var c = cells[a]; ctx.fillStyle = tones[c % 4]; ctx.fillRect(c % w, Math.floor(c / w), 1, 1); }
+        if (k >= 1) { phase = 1; done(); start = now; }
+      } else {
+        for (var b = 0; b < n; b++) { var c2 = cells[b]; ctx.clearRect(c2 % w, Math.floor(c2 / w), 1, 1); }
+        if (k >= 1) { cv.classList.remove('on'); return; }
+      }
+      requestAnimationFrame(frame);
+    })(start);
+  }
+  function setSkin(k, opts) {
+    opts = opts || {};
+    if (k !== 'pixel' && k !== 'atlas') return;
+    rememberSkin(k);
+    if (k === doc.dataset.skin && !opts.force) return;
+    var go = function () { applySkin(k); scrollTo(0, 0); };
+    if (reduceMQ.matches || opts.instant) return go();
+    if (k === 'atlas') bootThen(go); else dissolveThen(go);
+  }
+  $$('[data-skin-set]').forEach(function (b) {
+    b.addEventListener('click', function () { setSkin(b.dataset.skinSet); });
+  });
+
+  /* first-visit picker */
+  function openPicker() {
+    var pk = $('#skin-picker'); pk.hidden = false;
+    requestAnimationFrame(function () { pk.classList.add('on'); });
+    var mapCv = $('.pick-map', pk);
+    if (mapCv && window.WORLD) {
+      var g = mapCv.getContext('2d'), W = window.WORLD, cw = mapCv.width / W.cols, ch = mapCv.height / W.rows.length;
+      g.fillStyle = '#2b3b4d';
+      W.rows.forEach(function (row, y) {
+        for (var x = 0; x < W.cols; x++) {
+          if ((parseInt(row[x >> 2], 16) >> (3 - (x & 3))) & 1) g.fillRect(x * cw + cw * 0.25, y * ch + ch * 0.25, cw * 0.5, ch * 0.5);
+        }
+      });
+      g.fillStyle = '#4c9aff';
+      g.fillRect(mapCv.width * (199.94 / 360) - 2, mapCv.height * ((80 - 50.06) / 138) - 2, 4, 4);
+    }
+    var cards = $$('.pick', pk); cards[0].focus();
+    pk.addEventListener('keydown', function (e) {
+      var i = cards.indexOf(document.activeElement);
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); cards[(i + 1) % cards.length].focus(); }
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); cards[(i + cards.length - 1) % cards.length].focus(); }
+    });
+    cards.forEach(function (c) {
+      c.addEventListener('click', function () {
+        var k = c.dataset.pick;
+        doc.removeAttribute('data-picker');
+        pk.classList.remove('on');
+        setTimeout(function () { pk.hidden = true; }, 350);
+        if (k === 'atlas') setSkin('atlas', { force: true }); else { rememberSkin('pixel'); applySkin('pixel'); }
+        if (once('ssc')) setTimeout(function () { toast(T('toast.title'), T('toast.ssc'), 'trophy'); }, k === 'atlas' ? 2200 : 1200);
+      });
+    });
+  }
+
   /* ---------- boot ---------- */
   renderStatic();
   applyLang(lang);
   paintIcons();
   requestAnimationFrame(function () { doc.classList.add('ready'); });
-  if (once('ssc')) setTimeout(function () { toast(T('toast.title'), T('toast.ssc'), 'trophy'); }, 1600);
+  App.setLang = function (l) { store.set('lang', l); applyLang(l); blip([520]); };
+  App.setSkin = setSkin; App.toast = toast; App.blip = blip; App.once = once; App.store = store; App.esc = esc;
+  applySkin(doc.dataset.skin);
+  if (doc.dataset.picker) openPicker();
+  else if (once('ssc')) setTimeout(function () { toast(T('toast.title'), T('toast.ssc'), 'trophy'); }, 1600);
 })();

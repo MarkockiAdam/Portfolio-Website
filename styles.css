@@ -482,3 +482,125 @@ h2 { font-size: clamp(34px, 5vw, 56px); }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .ready .reveal, .node, .heat i { opacity: 1 !important; transform: none !important; filter: none !important; }
 }
+
+/* =========================================================
+   Style switching: PIXEL / ATLAS
+   ========================================================= */
+.skin-switch { display: flex; padding: 3px; background: var(--panel); clip-path: polygon(0 6px,3px 6px,3px 3px,6px 3px,6px 0,calc(100% - 6px) 0,calc(100% - 6px) 3px,calc(100% - 3px) 3px,calc(100% - 3px) 6px,100% 6px,100% calc(100% - 6px),calc(100% - 3px) calc(100% - 6px),calc(100% - 3px) calc(100% - 3px),calc(100% - 6px) calc(100% - 3px),calc(100% - 6px) 100%,6px 100%,6px calc(100% - 3px),3px calc(100% - 3px),3px calc(100% - 6px),0 calc(100% - 6px)); }
+.skin-switch button { font: 12px/1 var(--pixel); color: var(--ink-2); background: none; border: 0; padding: 8px 9px; cursor: pointer; }
+.skin-switch button[aria-pressed="true"] { background: var(--btn); color: var(--btn-ink); }
+.skin-switch button:not([aria-pressed="true"]):hover { color: #fff; background: var(--panel-hi); }
+@media (max-width: 720px) {
+  #sound { display: none; }
+  .controls { gap: 6px; }
+  .skin-switch button[aria-pressed="true"] { display: none; }   /* phones: one tap target, "go to the other style" */
+}
+
+/* hide the pixel world while ATLAS is on */
+[data-skin="atlas"] body { background: #0a0e13; }
+[data-skin="atlas"] #sky, [data-skin="atlas"] body > main, [data-skin="atlas"] .ground,
+[data-skin="atlas"] .hotbar, [data-skin="atlas"] .topbar, [data-skin="atlas"] .skip { display: none !important; }
+[data-skin="pixel"] #atlas { display: none !important; }
+
+/* boot sequence (into ATLAS) */
+.boot {
+  position: fixed; inset: 0; z-index: 90; display: none; padding: clamp(24px, 8vh, 80px) clamp(20px, 8vw, 96px);
+  background: #0a0e13; color: #9fb3c8; font: 500 14px/1.9 "JetBrains Mono", ui-monospace, monospace; letter-spacing: .02em;
+}
+.boot.on { display: block; }
+.boot p { margin: 0; animation: bootline .18s steps(3) both; }
+.boot p.ok { color: #3ecf8e; }
+.boot.out { animation: bootout .45s ease forwards; }
+@keyframes bootline { from { opacity: 0; transform: translateX(-6px); } }
+@keyframes bootout { to { opacity: 0; clip-path: inset(0 0 100% 0); } }
+
+/* pixel dissolve (back to PIXEL) */
+.dissolve { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 90; display: none; image-rendering: pixelated; pointer-events: none; }
+.dissolve.on { display: block; }
+
+/* first-visit picker */
+.picker {
+  position: fixed; inset: 0; z-index: 80; overflow-y: auto; display: grid; grid-template-rows: auto 1fr;
+  background: radial-gradient(120% 80% at 20% 0%, #1b2b55 0%, #0a0e13 60%);
+  color: #e6edf6; opacity: 0; transition: opacity .35s ease;
+}
+.picker.on { opacity: 1; }
+.picker-top { display: flex; justify-content: flex-end; padding: 16px var(--gutter); }
+.picker .lang { background: rgba(255, 255, 255, .08); }
+.picker-inner { align-self: center; width: min(980px, 100%); margin: 0 auto; padding: 8px var(--gutter) 48px; text-align: center; }
+.picker-name { font: 500 13px/1 "JetBrains Mono", ui-monospace, monospace; letter-spacing: .18em; text-transform: uppercase; color: #8fa3ba; margin-bottom: 18px; }
+.picker h1 { font-size: clamp(34px, 6vw, 64px); letter-spacing: -.035em; margin-bottom: clamp(28px, 5vh, 48px); }
+.picker-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; text-align: left; }
+.pick {
+  display: flex; flex-direction: column; gap: 10px; padding: 14px 14px 22px; cursor: pointer; color: inherit; font: inherit;
+  background: rgba(255, 255, 255, .04); border: 1px solid rgba(255, 255, 255, .12); border-radius: 14px;
+  transition: transform .25s cubic-bezier(.2, .8, .2, 1), border-color .2s, background-color .2s;
+}
+.pick:hover, .pick:focus-visible { transform: translateY(-4px); background: rgba(255, 255, 255, .07); outline: none; }
+.pick-pixel:hover, .pick-pixel:focus-visible { border-color: #7fa6ff; }
+.pick-atlas:hover, .pick-atlas:focus-visible { border-color: #4c9aff; }
+.pick-art { position: relative; display: block; height: 170px; border-radius: 8px; overflow: hidden; margin-bottom: 6px; }
+.pick-pixel .pick-art { background: #3d6fe0; image-rendering: pixelated; }
+.pick-sky {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, .55) 1.3px, transparent 1.6px), radial-gradient(circle, rgba(255, 255, 255, .25) 1.3px, transparent 1.6px);
+  background-size: 8px 8px, 8px 8px; background-position: 0 0, 4px 4px;
+  -webkit-mask-image: radial-gradient(60% 50% at 30% 40%, #000 30%, transparent 70%), radial-gradient(50% 40% at 75% 65%, #000 30%, transparent 70%);
+  mask-image: radial-gradient(60% 50% at 30% 40%, #000 30%, transparent 70%), radial-gradient(50% 40% at 75% 65%, #000 30%, transparent 70%);
+  animation: drift 12s linear infinite;
+}
+@keyframes drift { to { background-position: 64px 0, 68px 4px; } }
+.pick-sun { position: absolute; right: 18%; top: 18%; width: 28px; height: 28px; background: #fffbe8; clip-path: polygon(25% 0, 75% 0, 75% 12%, 88% 12%, 88% 25%, 100% 25%, 100% 75%, 88% 75%, 88% 88%, 75% 88%, 75% 100%, 25% 100%, 25% 88%, 12% 88%, 12% 75%, 0 75%, 0 25%, 12% 25%, 12% 12%, 25% 12%); }
+.pick-grass { position: absolute; left: 0; right: 0; bottom: 0; height: 22px; background: repeating-linear-gradient(90deg, #4fae3a 0 4px, #63c34a 4px 8px, #3c8f2b 8px 12px); clip-path: polygon(0 40%, 4% 0, 8% 45%, 13% 10%, 18% 50%, 24% 5%, 30% 40%, 36% 15%, 42% 50%, 49% 0, 55% 45%, 62% 10%, 68% 40%, 75% 5%, 82% 45%, 88% 15%, 94% 40%, 100% 10%, 100% 100%, 0 100%); }
+.pick-atlas .pick-art { background: #0d131a; border: 1px solid #1e2731; }
+.pick-map { position: absolute; inset: 0; width: 100%; height: 100%; }
+.pick-scan { position: absolute; top: 0; bottom: 0; width: 30%; background: linear-gradient(90deg, transparent, rgba(76, 154, 255, .22), transparent); animation: scan 3.2s ease-in-out infinite; }
+@keyframes scan { from { left: -30%; } to { left: 100%; } }
+.pick-name { font: 600 15px/1 "JetBrains Mono", ui-monospace, monospace; letter-spacing: .16em; padding: 0 6px; }
+.pick-pixel .pick-name { font-family: var(--pixel); letter-spacing: .08em; }
+.pick-desc { color: #a8b6c6; font-size: 15px; line-height: 1.5; padding: 0 6px; }
+.picker-hint { margin-top: 26px; color: #8fa3ba; font-size: 14px; }
+@media (max-width: 640px) {
+  .picker-cards { grid-template-columns: 1fr; }
+  .pick-art { height: 120px; }
+}
+[data-picker] body { overflow: hidden; }
+
+/* toasts in ATLAS */
+[data-skin="atlas"] .toast {
+  clip-path: none; border-radius: 6px; background: #121922; box-shadow: 0 0 0 1px #263241, 0 12px 30px rgba(0, 0, 0, .45);
+  font-family: Inter, system-ui, sans-serif; animation: atlas-toast .3s cubic-bezier(.2, .8, .2, 1) both;
+}
+[data-skin="atlas"] .toast.out { animation: atlas-toast-out .3s ease both; }
+[data-skin="atlas"] .toast strong { font: 600 11px/1.3 "JetBrains Mono", monospace; letter-spacing: .12em; color: #f5a524; }
+[data-skin="atlas"] .toast-icon { background: rgba(245, 165, 36, .12); border-radius: 4px; }
+[data-skin="atlas"] .toasts { top: 64px; bottom: auto; align-content: start; }
+@media (max-width: 900px) {
+  [data-skin="atlas"] .toasts { top: auto; bottom: calc(76px + env(safe-area-inset-bottom)); left: 12px; right: 12px; align-content: end; }
+}
+@keyframes atlas-toast { from { opacity: 0; transform: translateY(-8px); } }
+@keyframes atlas-toast-out { to { opacity: 0; transform: translateY(-8px); } }
+
+
+/* =========================================================
+   Pixel-corner outlines: a ring that follows the stepped corners,
+   so outlines no longer stop short of the corners.
+   ========================================================= */
+.project, .chest, .tool, .quest-card, .btn-ghost, .pbtn, .toast { position: relative; --rw: 0px; --ring: transparent; }
+.project::after, .chest::after, .tool::after, .quest-card::after, .btn-ghost::after, .pbtn::after, .toast::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 2;
+  background: var(--ring); transition: background-color .25s;
+  clip-path: polygon(evenodd, calc(0px) calc(var(--n) * 2), calc(var(--n) * 1) calc(var(--n) * 2), calc(var(--n) * 1) calc(var(--n) * 1), calc(var(--n) * 2) calc(var(--n) * 1), calc(var(--n) * 2) calc(0px), calc(100% - (var(--n) * 2)) calc(0px), calc(100% - (var(--n) * 2)) calc(var(--n) * 1), calc(100% - (var(--n) * 1)) calc(var(--n) * 1), calc(100% - (var(--n) * 1)) calc(var(--n) * 2), calc(100% - (0px)) calc(var(--n) * 2), calc(100% - (0px)) calc(100% - (var(--n) * 2)), calc(100% - (var(--n) * 1)) calc(100% - (var(--n) * 2)), calc(100% - (var(--n) * 1)) calc(100% - (var(--n) * 1)), calc(100% - (var(--n) * 2)) calc(100% - (var(--n) * 1)), calc(100% - (var(--n) * 2)) calc(100% - (0px)), calc(var(--n) * 2) calc(100% - (0px)), calc(var(--n) * 2) calc(100% - (var(--n) * 1)), calc(var(--n) * 1) calc(100% - (var(--n) * 1)), calc(var(--n) * 1) calc(100% - (var(--n) * 2)), calc(0px) calc(100% - (var(--n) * 2)), calc(0px) calc(var(--n) * 2), calc(0px + var(--rw)) calc(var(--n) * 2 + var(--rw)), calc(var(--n) * 1 + var(--rw)) calc(var(--n) * 2 + var(--rw)), calc(var(--n) * 1 + var(--rw)) calc(var(--n) * 1 + var(--rw)), calc(var(--n) * 2 + var(--rw)) calc(var(--n) * 1 + var(--rw)), calc(var(--n) * 2 + var(--rw)) calc(0px + var(--rw)), calc(100% - (var(--n) * 2 + var(--rw))) calc(0px + var(--rw)), calc(100% - (var(--n) * 2 + var(--rw))) calc(var(--n) * 1 + var(--rw)), calc(100% - (var(--n) * 1 + var(--rw))) calc(var(--n) * 1 + var(--rw)), calc(100% - (var(--n) * 1 + var(--rw))) calc(var(--n) * 2 + var(--rw)), calc(100% - (0px + var(--rw))) calc(var(--n) * 2 + var(--rw)), calc(100% - (0px + var(--rw))) calc(100% - (var(--n) * 2 + var(--rw))), calc(100% - (var(--n) * 1 + var(--rw))) calc(100% - (var(--n) * 2 + var(--rw))), calc(100% - (var(--n) * 1 + var(--rw))) calc(100% - (var(--n) * 1 + var(--rw))), calc(100% - (var(--n) * 2 + var(--rw))) calc(100% - (var(--n) * 1 + var(--rw))), calc(100% - (var(--n) * 2 + var(--rw))) calc(100% - (0px + var(--rw))), calc(var(--n) * 2 + var(--rw)) calc(100% - (0px + var(--rw))), calc(var(--n) * 2 + var(--rw)) calc(100% - (var(--n) * 1 + var(--rw))), calc(var(--n) * 1 + var(--rw)) calc(100% - (var(--n) * 1 + var(--rw))), calc(var(--n) * 1 + var(--rw)) calc(100% - (var(--n) * 2 + var(--rw))), calc(0px + var(--rw)) calc(100% - (var(--n) * 2 + var(--rw))), calc(0px + var(--rw)) calc(var(--n) * 2 + var(--rw)));
+}
+.project { box-shadow: inset 0 2px 0 var(--panel-hi); --rw: 1px; --ring: color-mix(in srgb, var(--acc) 30%, transparent); }
+.project:hover { box-shadow: inset 0 2px 0 var(--panel-hi); --rw: 2px; --ring: color-mix(in srgb, var(--acc) 80%, transparent); }
+.tool:hover { box-shadow: inset 0 2px 0 var(--panel-hi); --rw: 2px; --ring: rgba(255, 255, 255, .4); }
+.quest.gold .quest-card { box-shadow: none; --rw: 2px; --ring: var(--gold); }
+.quest.next .quest-card { box-shadow: none; --rw: 2px; --ring: var(--line); }
+.chest:hover { box-shadow: inset 0 2px 0 var(--panel-hi); --rw: 2px; --ring: rgba(247, 201, 72, .6); }
+.chest.open { box-shadow: inset 0 2px 0 var(--panel-hi); --rw: 2px; --ring: var(--gold); }
+.btn-ghost { box-shadow: none; --rw: 2px; --ring: var(--line); }
+.pbtn { box-shadow: none; --rw: 1px; --ring: var(--line); }
+.pbtn.main { --ring: transparent; }
+.toast { box-shadow: none; --rw: 2px; --ring: rgba(255, 255, 255, .16); }
+[data-skin="atlas"] .toast::after { display: none; }

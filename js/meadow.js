@@ -6,7 +6,7 @@
   var ctx = cv.getContext('2d');
   var CELL = 4, W = 0, H = 0, blades = [], flowers = [], flies = [];
   var reduce = matchMedia('(prefers-reduced-motion: reduce)');
-  var px = -1e4, visible = false, t = 0;
+  var px = -1e4, visible = false, paused = false, t = 0;
 
   function rnd(s) { var x = Math.sin(s * 127.1) * 43758.5453; return x - Math.floor(x); }
 
@@ -73,7 +73,7 @@
 
   var last = 0;
   function loop(now) {
-    if (!visible) return;
+    if (!visible || paused) return;
     requestAnimationFrame(loop);
     if (now - last < 50) return;
     last = now; t = now / 1000;
@@ -89,6 +89,10 @@
     px = (e.clientY > r.top - 40) ? e.clientX - r.left : -1e4;
   }, { passive: true });
   addEventListener('resize', function () { build(); draw(); });
-  window.Meadow = { redraw: draw };
+  window.Meadow = {
+    redraw: draw,
+    pause: function () { paused = true; },
+    resume: function () { if (!paused) return; paused = false; build(); draw(); if (visible) requestAnimationFrame(loop); }
+  };
   build(); draw();
 })();
